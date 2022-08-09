@@ -85,9 +85,9 @@ transportes.push(
   new Transporte(123456, "TransVader", "Tony Gomez", 28, "Concordia"));
 transportes.push(
   new Transporte(1234567, "Transporte Messi", "Lionel Gomez", 28, "Bariloche"));
- for(const transporte of transportes){
-    console.log(`El transporte ${transporte.nombre} tiene una capacidad de ${transporte.capacidad} pallets`);
- }
+//  for(const transporte of transportes){
+    // console.log(`El transporte ${transporte.nombre} tiene una capacidad de ${transporte.capacidad} pallets`);
+//  }
 
 function capacidadCarga() {
   let numeroTte = parseInt(prompt("Ingrese el numero de transporte"));
@@ -101,7 +101,7 @@ function capacidadCarga() {
   );
 }
 
-//  capacidadCarga();
+//capacidadCarga();
 
 function grabarCarga() {
   let numeroTte = parseInt(prompt("Ingrese el numero de transporte"));
