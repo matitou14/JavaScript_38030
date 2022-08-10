@@ -1,46 +1,66 @@
-h1{
-    @mixin font($ff,$fs) {
-        font-family:$font-title ;
-        font-size: $text-small;
-    }
-    font-weight: bold;
-    text-align: center;    
-    }
+h1 {
+  @mixin font($ff, $fs) {
+    font-family: $font-title;
+    font-size: $text-small;
+  }
+  font-weight: bold;
+  text-align: center;
+}
 
- h2{
-        @mixin font($ff,$fs) {
-            font-family:$font-subtitle ;
-            font-size: $text-medium;
-        }
-        font-weight: bold;
-        text-align: center;    
-        }
-.index__login{
-display: flex;
-flex-direction: row;
-flex-wrap: wrap;
-align-content: center;
-justify-content: center;
-}        
+h2 {
+  @mixin font($ff, $fs) {
+    font-family: $font-subtitle;
+    font-size: $text-medium;
+  }
+  font-weight: bold;
+  text-align: center;
+}
 
-.index__label__input{
-    padding-left: 5px;
-}  
+.index__logo {
+  max-width: 15%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: auto;
+}
+.index__login {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  padding-bottom: $spacing-vlarge;
+}
 
-.index__logo{
-    width: 15%;
+.index__label__input {
+  padding-left: 5px;
+}
+
+.index__form__tte {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.form-control {
+  width: 100%;
+padding-bottom: 10px;
+}
+
+.btn__carga{
+    padding-left: 50px;
+}
+.index__carga__pallet{
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    margin: auto;
+    justify-content:flex-end;
+    padding-right: 300px;
+    align-items: center;
+    padding-bottom: $spacing-vlarge;
 }
-
-.form-floating mb-1{
+.carga-form-control {
+  width: 100%; } 
+.index__carga__button{
     display: flex;
-    flex-direction: column;
-    margin: auto
-}
-.form-control{
-    width: 20%;
-    
+    flex-direction: row;
+    justify-content:center;
 }

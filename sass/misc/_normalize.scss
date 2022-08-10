@@ -6,5 +6,16 @@
 }
 body{
     background-color: #fafafa;
+    background-image: url(../img/fondo/olas.svg);
+    background-size:cover;
+}
+h1{
+    font-family: $font-title;
+}
+h2 h3{
+    font-family: $font-subtitle;
 
+}
+p{
+    font-family: $font-general;
 }

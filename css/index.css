@@ -9,7 +9,18 @@
   box-sizing: border-box; }
 
 body {
-  background-color: #fafafa; }
+  background-color: #fafafa;
+  background-image: url(../img/fondo/olas.svg);
+  background-size: cover; }
+
+h1 {
+  font-family: "Russo One", sans-serif; }
+
+h2 h3 {
+  font-family: "Merriweather Sans", sans-serif; }
+
+p {
+  font-family: "Oxygen", sans-serif; }
 
 /*VIEWS*/
 h1 {
@@ -20,27 +31,48 @@ h2 {
   font-weight: bold;
   text-align: center; }
 
-.index__login {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-content: center;
-  justify-content: center; }
-
-.index__label__input {
-  padding-left: 5px; }
-
 .index__logo {
-  width: 15%;
+  max-width: 15%;
   display: flex;
   flex-direction: row;
   justify-content: center;
   margin: auto; }
 
-.form-floating mb-1 {
+.index__login {
   display: flex;
   flex-direction: column;
-  margin: auto; }
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  padding-bottom: 15rem; }
+
+.index__label__input {
+  padding-left: 5px; }
+
+.index__form__tte {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
 
 .form-control {
-  width: 20%; }
+  width: 100%;
+  padding-bottom: 10px; }
+
+.btn__carga {
+  padding-left: 50px; }
+
+.index__carga__pallet {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  padding-right: 300px;
+  align-items: center;
+  padding-bottom: 15rem; }
+
+.carga-form-control {
+  width: 100%; }
+
+.index__carga__button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center; }
