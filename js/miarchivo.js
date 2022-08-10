@@ -54,14 +54,14 @@ function inicioCarga(){
     }
         finCarga()*/
 
-alert("Bienvenido a My cargo");
-function login() {
-  let usuario = prompt("Ingrese su expedicion");
-  while (usuario === "" || usuario === null) {
-    usuario = prompt("Ingrese su expedicion");
-  }
-}
-login();
+// alert("Bienvenido a My cargo");
+// function login() {
+//   let usuario = prompt("Ingrese su expedicion");
+//   while (usuario === "" || usuario === null) {
+//     usuario = prompt("Ingrese su expedicion");
+//   }
+// }
+// login();
 
 class Transporte {
   constructor(numeroTte, nombre, chofer, capacidad, destino) {
