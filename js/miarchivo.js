@@ -64,9 +64,10 @@ function inicioCarga(){
 // login();
 
 class Transporte {
-  constructor(numeroTte, nombre, chofer, capacidad, destino) {
+  constructor(numeroTte, nombre, nroPedido ,chofer, capacidad, destino) {
     this.numeroTte = numeroTte;
     this.nombre = nombre;
+    this.nroPedido = nroPedido
     this.chofer = chofer;
     this.capacidad = capacidad;
     this.destino = destino;
@@ -78,13 +79,13 @@ class Transporte {
 
 const transportes = [];
 transportes.push(
-  new Transporte(1234, "Logistica Pepe", "tito gomez", 26, "Cordoba")); // la sentencia new es para crear
+  new Transporte(1234, "Logistica Pepe", 987 ,"tito gomez", 26, "Cordoba")); // la sentencia new es para crear
 transportes.push(
-  new Transporte(12345, "Logi trans", "Matias Gomez", 30, "Buenos Aires")); // una nueva copia de la funcion constructora
+  new Transporte(12345, "Logi trans", 654,"Matias Gomez", 30, "Buenos Aires")); // una nueva copia de la funcion constructora
 transportes.push(
-  new Transporte(123456, "TransVader", "Tony Gomez", 28, "Concordia"));
+  new Transporte(123456, "TransVader", 321,"Tony Gomez", 28, "Concordia"));
 transportes.push(
-  new Transporte(1234567, "Transporte Messi", "Lionel Gomez", 28, "Bariloche"));
+  new Transporte(1234567, "Transporte Messi", 123,"Lionel Gomez", 28, "Bariloche"));
 //  for(const transporte of transportes){
     // console.log(`El transporte ${transporte.nombre} tiene una capacidad de ${transporte.capacidad} pallets`);
 //  }
@@ -92,9 +93,7 @@ transportes.push(
 function capacidadCarga() {
   let numeroTte = parseInt(prompt("Ingrese el numero de transporte"));
   let pallets = parseInt(prompt("Ingrese la cantidad de pallets"));
-  let transporte = transportes.find(
-    (transporte) => transporte.numeroTte == numeroTte
-  );
+  let transporte = transportes.find((transporte) => transporte.numeroTte == numeroTte);
   transporte.capacidadCarga(pallets);
   console.log(
     `Al transporte ${transporte.nombre} le quedan ${transporte.capacidad} lugares vacios`
@@ -119,3 +118,10 @@ function grabaFinCarga() {
 }
 //grabaFinCarga()
 
+function buscarPedido (){
+  let nroPedido = parseInt(prompt("Ingresa el numero de entrega"));
+   let entrega = transportes.find((transporte) => transporte.nroPedido === nroPedido);{
+    console.table(`La entrega ${nroPedido} pertenece a ${entrega.nombre} con destino a ${entrega.destino}`);
+   }
+}
+buscarPedido()

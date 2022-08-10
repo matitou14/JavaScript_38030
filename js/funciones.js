@@ -64,3 +64,28 @@
 //     }
 //         //finCarga()
 
+class expediciones {
+    constructor(nombre, cargaInicial, cargaFinal , horaInicio, horaFin) {
+        this.nombre = nombre;
+        this.cargaInicial = cargaInicial
+        this.cargaFinal = cargaFinal
+        this.horaInicio = horaInicio
+        this.horaFin = horaFin
+        this.cargaTotal = function(pallets){
+        this.cargaFinal = this.cargaFinal + pallets
+        }
+      } 
+}
+
+const expedicion = [];
+expedicion.push(new expediciones("Exp Dulceria", 0, 0, "", ""));
+expedicion.push(new expediciones("Exp PF", 0, 0, "", ""));
+expedicion.push(new expediciones("Exp UAT", 0, 0, "", ""));
+expedicion.push(new expediciones("Exp Queseria", 0, 0, "", ""));
+
+function verExpediciones (){
+  expedicion.forEach(expediciones => console.table (`Las expediciones activas son  ${expediciones.nombre}`))
+}
+
+//verExpediciones()
+
