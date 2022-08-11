@@ -1,20 +1,12 @@
-h1 {
-  @mixin font($ff, $fs) {
-    font-family: $font-title;
-    font-size: $text-small;
-  }
-  font-weight: bold;
-  text-align: center;
-}
 
-h2 {
-  @mixin font($ff, $fs) {
-    font-family: $font-subtitle;
+
+h1 {font-weight: bold;
+  text-align: center;
+@mixin font($ff, $fs) {
+    font-family: $font-title;
     font-size: $text-medium;
   }
-  font-weight: bold;
-  text-align: center;
-}
+}  
 
 .index__logo {
   max-width: 15%;

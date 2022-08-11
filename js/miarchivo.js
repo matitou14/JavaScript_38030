@@ -25,23 +25,6 @@ function ejecutar(){
 
   // GESTIONAR CARGA
 
-
-  
-function inicioCarga(){
-    let iniciarCarga = confirm("Desea iniciar la carga");  
-   while(iniciarCarga){
-       alert("Iniciando proceso de carga");  
-       break
-   }if (iniciarCarga == false){
-    confirm("¿desea cancelar?");
-    alert("Cancelado por usuario");
-}
-}
-
-    inicioCarga()
-
-
-
     function finCarga(){
      finCarga = confirm("Fin de carga");  
        while(finCarga){
@@ -64,10 +47,10 @@ function inicioCarga(){
 // login();
 
 class Transporte {
-  constructor(numeroTte, nombre, nroPedido ,chofer, capacidad, destino) {
+  constructor(numeroTte, nombre, nroPedido, chofer, capacidad, destino) {
     this.numeroTte = numeroTte;
     this.nombre = nombre;
-    this.nroPedido = nroPedido
+    this.nroPedido = nroPedido;
     this.chofer = chofer;
     this.capacidad = capacidad;
     this.destino = destino;
@@ -79,21 +62,41 @@ class Transporte {
 
 const transportes = [];
 transportes.push(
-  new Transporte(1234, "Logistica Pepe", 987 ,"tito gomez", 26, "Cordoba")); // la sentencia new es para crear
+  new Transporte(1234, "Logistica Pepe", 987, "tito gomez", 26, "Cordoba")
+); // la sentencia new es para crear
 transportes.push(
-  new Transporte(12345, "Logi trans", 654,"Matias Gomez", 30, "Buenos Aires")); // una nueva copia de la funcion constructora
+  new Transporte(12345, "Logi trans", 654, "Matias Gomez", 30, "Buenos Aires")
+); // una nueva copia de la funcion constructora
 transportes.push(
-  new Transporte(123456, "TransVader", 321,"Tony Gomez", 28, "Concordia"));
+  new Transporte(123456, "TransVader", 321, "Tony Gomez", 28, "Concordia")
+);
 transportes.push(
-  new Transporte(1234567, "Transporte Messi", 123,"Lionel Gomez", 28, "Bariloche"));
-//  for(const transporte of transportes){
-    // console.log(`El transporte ${transporte.nombre} tiene una capacidad de ${transporte.capacidad} pallets`);
-//  }
+  new Transporte(
+    1234567,
+    "Transporte Messi",
+    123,
+    "Lionel Gomez",
+    28,
+    "Bariloche"
+  )
+);
+
+function verTransportes() {
+  transportes.forEach((Transporte) =>
+    console.log(
+      `El transporte ${Transporte.nombre} tiene una capacidad de ${Transporte.capacidad} pallets`
+    )
+  );
+}
+
+//verTransportes()
 
 function capacidadCarga() {
   let numeroTte = parseInt(prompt("Ingrese el numero de transporte"));
   let pallets = parseInt(prompt("Ingrese la cantidad de pallets"));
-  let transporte = transportes.find((transporte) => transporte.numeroTte == numeroTte);
+  let transporte = transportes.find(
+    (transporte) => transporte.numeroTte == numeroTte
+  );
   transporte.capacidadCarga(pallets);
   console.log(
     `Al transporte ${transporte.nombre} le quedan ${transporte.capacidad} lugares vacios`
@@ -102,26 +105,79 @@ function capacidadCarga() {
 
 //capacidadCarga();
 
-function grabarCarga() {
-  let numeroTte = parseInt(prompt("Ingrese el numero de transporte"));
+// BOTONES PARA GESTIONAR INICIO - FIN DE CARGA
+function inicioCarga() {
+  let iniciarCarga = confirm("Desea iniciar la carga");
   let hora = new Date().toLocaleTimeString();
-  confirm("Desea iniciar la carga");
-  console.log(`La carga ha comenzado a las ${hora}`);
+  while (iniciarCarga) {
+    alert(`La carga ha comenzado a las ${hora}`);
+    break;
+  }
+  if (iniciarCarga == false) {
+    confirm("¿desea cancelar?");
+    alert("Cancelado por usuario");
+  }
 }
 
-// grabarCarga();
+//inicioCarga()
 
-function grabaFinCarga() {
-  let numeroTte = parseInt(prompt("Ingrese el numero de transporte"));
+function finCarga() {
+  let finCarga = confirm("Fin de carga");
   let hora = new Date().toLocaleTimeString();
-  console.log(`La carga ha finalizado a las ${hora}`);
+  while (finCarga) {
+    alert(`La carga ha finalizado a las ${hora}`);
+    break;
+  }
+  if (finCarga == false) {
+    confirm("¿desea cancelar?");
+    alert("Cancelado por usuario");
+  }
 }
-//grabaFinCarga()
+//finCarga()
 
-function buscarPedido (){
+// FUNCION PARA VERIFICAR TRANSPORTE Y DESTINO (BOTON BUSQUEDA)
+
+function buscarPedido() {
   let nroPedido = parseInt(prompt("Ingresa el numero de entrega"));
-   let entrega = transportes.find((transporte) => transporte.nroPedido === nroPedido);{
-    console.table(`La entrega ${nroPedido} pertenece a ${entrega.nombre} con destino a ${entrega.destino}`);
-   }
+  let entrega = transportes.find(
+    (transporte) => transporte.nroPedido === nroPedido
+  );
+  {
+    console.table(
+      `La entrega ${nroPedido} pertenece a ${entrega.nombre} con destino a ${entrega.destino}`
+    );
+  }
 }
-buscarPedido()
+//buscarPedido()
+
+class expediciones {
+  constructor(nombre, cargaFinal) {
+    this.nombre = nombre;
+    this.cargaFinal = cargaFinal;
+    }
+  }
+
+const expedicion = [];
+expedicion.push(new expediciones("Exp Dulceria", 0,));
+expedicion.push(new expediciones("Exp PF", 0,));
+expedicion.push(new expediciones("Exp UAT", 0,));
+expedicion.push(new expediciones("Exp Queseria", 0,));
+
+function verExpediciones() {
+  expedicion.forEach((expediciones) =>
+    console.log(`Las expediciones activas son  ${expediciones.nombre}`)
+  );
+}
+
+//verExpediciones()
+
+function calcularCarga() {
+  let dulceria = parseInt(prompt("Ingrese la carga de la expedicion Dulceria"));
+  let pf = parseInt(prompt("Ingrese la carga de la expedicion PF"));
+  let uat = parseInt(prompt("Ingrese la carga de la expedicion UAT"));
+  let queseria = parseInt(prompt("Ingrese la carga de la expedicion Queseria"));
+  let sumaExpe = dulceria + pf + uat + queseria;
+  console.log(sumaExpe);
+}
+
+//calcularCarga()
