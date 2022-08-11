@@ -1,15 +1,8 @@
 // debugger
 // login My Cargo
 
-/*
+
 // Opcion de consulta antes de empezar el proceso de carga (util para ver destino/nombre transporte)
-
-function consultar (){ 
-    let transporte = prompt("Ingrese el numero de transporte");
-    alert("El numero corresponde al Tte PEPE con destino a Cordoba")
-}
-
-consultar()
 
 
 function ejecutar(){
@@ -23,27 +16,15 @@ function ejecutar(){
 }
  ejecutar()
 
-  // GESTIONAR CARGA
 
-    function finCarga(){
-     finCarga = confirm("Fin de carga");  
-       while(finCarga){
-           alert("Fin proceso de carga");
-           break
-        }if (finCarga == false){
-            confirm("¿desea cancelar?");
-            alert("Cancelado por usuario");
-        }
-    }
-        finCarga()*/
 
-// alert("Bienvenido a My cargo");
-// function login() {
-//   let usuario = prompt("Ingrese su expedicion");
-//   while (usuario === "" || usuario === null) {
-//     usuario = prompt("Ingrese su expedicion");
-//   }
-// }
+alert("Bienvenido a My cargo");
+function login() {
+  let usuario = prompt("Ingrese su expedicion");
+  while (usuario === "" || usuario === null) {
+    usuario = prompt("Ingrese su expedicion");
+  }
+}
 // login();
 
 class Transporte {
