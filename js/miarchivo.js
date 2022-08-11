@@ -161,4 +161,4 @@ function calcularCarga() {
   console.log(sumaExpe);
 }
 
-//calcularCarga()
+calcularCarga()
