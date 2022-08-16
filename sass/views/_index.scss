@@ -15,15 +15,28 @@ h1 {font-weight: bold;
   justify-content: center;
   margin: auto;
 }
-.index__login {
+.index__section__login{
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  align-content: center;
   justify-content: center;
-  padding-bottom: $spacing-vlarge;
+  padding: $spacing-small;
 }
+.index__login {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  max-width: auto;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  font-family: $font-subtitle;
+  background-color: rgba(255, 255, 255, 0.75);
+  border-radius: 12px;
+  border: 1px solid rgba(209, 213, 219, 0.3);
+}
+.index__btn__login{
+  margin: auto;
 
+}
 .index__label__input {
   padding-left: 5px;
 }

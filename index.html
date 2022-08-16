@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+ 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,24 +14,31 @@
         href="https://fonts.googleapis.com/css2?family=Merriweather+Sans&family=Oxygen:wght@300&family=Russo+One&display=swap"
         rel="stylesheet">
 
-    <script src="js/funciones.js"></script>
-    <script src="js/variables.js"></script>
-    <script src="js/miarchivo.js"></script>
+    <script  src="./js/funciones.js" defer></script>
+    <script  src="./js/variables.js" defer></script>
+    <script  src="./js/miarchivo.js" defer></script>
     <title>App de gestion de cargas</title>
 </head>
 
 <body>
     <img class="index__logo" src="./img/logo/app logo.svg" alt="Logo con autoelevador">
 
-    <h1>Login</h1>
-    <div class="index__login">
-        <input type="text" class="index-form-control" id="floatingInput" placeholder="Ingresa expedición">
-        <label for="floatingInput">Ingrese expedición</label>
-        <button type="button" class="btn btn-primary">Ejecutar</button>
-    </div>
+    <section class="index__section__login">
+        <div class="index__login" id="logins">
+            <h1 id="titulo">Login</h1>
+            <input id="nombreExpe" type="text" class="index-form-control" id="floatingInput"
+                placeholder="Ingrese expedición">
+            <label for="floatingInput"></label>
+        </div>
+        <div class="index__btn__login">
+            <button type="button" onclick="llamarExpe()" class="btn btn-primary">Ejecutar</button>
+            
+        </div>
+
+   </section>
     <section class="index__form__tte">
         <div class="form-floating mb-1">
-            <input type="text" class="form-control" id="floatingInput" placeholder="Ingresa expedición">
+            <input id="nroTte" type="text" class="form-control" id="floatingInput" placeholder="Ingresa expedición">
             <label for="floatingInput">Ingresa el numero de transporte</label>
             <button type="button" class="btn btn-primary">Ejecutar</button>
             <button type="button" class="btn btn-secondary">Restablecer</button>
@@ -40,13 +47,33 @@
     </section>
     <section class="btn__carga">
         <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-            <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
+            <input type="checkbox" onclick="inicioCarga()" class="btn-check" id="btncheck1" autocomplete="off">
             <label class="btn btn-outline-primary" for="btncheck1">Inicio carga</label>
 
-            <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off">
+            <input type="checkbox" onclick="finCarga()" class="btn-check" id="btncheck2" autocomplete="off">
             <label class="btn btn-outline-primary" for="btncheck2">Fin carga</label>
         </div>
     </section>
+    <section>
+        <title> |My Cargo app| - Consultas </title>
+        </head>
+
+        <body>
+            <img class="index__logo" src="../img/logo/app logo.svg" alt="Logo con autoelevador">
+            <h1 id="titulo">Consultas</h1>
+            <div class="consultas__card">
+                <div class="consultas__title">Una tarjeta básica</div>
+                <div id="consultas__p" class="consultas__body">
+                    <img src="/img/" size="30%" alt="muestra">
+                    loren ipsumdldñ dlldll
+                </div>
+                <div class="consultas__footer">
+                    <a id="back__menu" href="">Volver al menu principal</a>
+                </div>
+            </div>
+
+    </section>
+
     <section class="index__carga__pallet">
         <div class="form-floating mb-1">
             <input type="text" class="form-control" id="floatingInput" placeholder="Pallets a cargar">

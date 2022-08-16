@@ -23,6 +23,47 @@ p {
   font-family: "Oxygen", sans-serif; }
 
 /*VIEWS*/
+.consultas__card {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: 420px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  font-family: "Merriweather Sans", sans-serif;
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background-color: rgba(255, 255, 255, 0.75);
+  border-radius: 12px;
+  border: 1px solid rgba(209, 213, 219, 0.3); }
+
+.consultas__title {
+  font-size: 24px;
+  padding: 10px 10px 0 10px; }
+
+.consultas__body {
+  padding: 10px; }
+
+.consultas__footer {
+  background: #f80c18;
+  border-radius: 0 0 15px 15px;
+  padding: 10px;
+  text-align: center; }
+
+.consultas__footer a {
+  text-decoration: none;
+  color: white; }
+  .consultas__footer a:hover {
+    color: #f3cf2c; }
+
+.consultas__footer a:after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  content: ""; }
+
 h1 {
   font-weight: bold;
   text-align: center; }
@@ -34,14 +75,80 @@ h1 {
   justify-content: center;
   margin: auto; }
 
-.index__login {
+.index__section__login {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  align-content: center;
   justify-content: center;
-  padding-bottom: 15rem; }
+  padding: 1.2rem; }
 
+.index__login {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  max-width: auto;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  font-family: "Merriweather Sans", sans-serif;
+  background-color: rgba(255, 255, 255, 0.75);
+  border-radius: 12px;
+  border: 1px solid rgba(209, 213, 219, 0.3); }
+
+.index__btn__login {
+  margin: auto; }
+
+/* prueba login */
+
+#modal{
+  background-color: #fff; 
+  position: absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 100px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1.6rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  animation-name: animatemodal;
+  animation-duration: 0.4s;
+  
+}
+
+#close-btn{
+  cursor: pointer;
+  font-size: 3rem;
+  color: #ff0000;
+
+}
+
+#modal-container{
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, .2);
+}
+
+  @keyframes animatemodal{
+      from{
+          top:-300px;  
+          opacity: 0;
+      }
+      to{
+          top:50%;
+          opacity: 1;
+      }
+  }
+
+
+/* fin prueba login */
 .index__label__input {
   padding-left: 5px; }
 

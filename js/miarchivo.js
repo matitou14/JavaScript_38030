@@ -7,70 +7,36 @@
 
 function ejecutar(){
     let transporte = prompt("Ingrese el numero de transporte");
-  if (transporte == false){
+  if (transporte == ""){
       alert("Ingrese un numero de transporte");
     transporte = prompt("Ingrese el numero de transporte"); // No muestra alert
 }else if (transporte >=1){
       alert("Iniciando proceso de carga"); // DEBERIA GENERARSE UN PRINT DE LA HORA EN 
 }                                          // QUE SE INICIA LA CARGA (backend)
 }
- ejecutar()
+ //ejecutar()
 
 
 
-alert("Bienvenido a My cargo");
+//alert("Bienvenido a My cargo");
 function login() {
-  let usuario = prompt("Ingrese su expedicion");
+  let usuario = [];
   while (usuario === "" || usuario === null) {
     usuario = prompt("Ingrese su expedicion");
   }
 }
-// login();
+//login();
 
-class Transporte {
-  constructor(numeroTte, nombre, nroPedido, chofer, capacidad, destino) {
-    this.numeroTte = numeroTte;
-    this.nombre = nombre;
-    this.nroPedido = nroPedido;
-    this.chofer = chofer;
-    this.capacidad = capacidad;
-    this.destino = destino;
-    this.capacidadCarga = function (pallets) {
-      this.capacidad = this.capacidad - pallets;
-    };
-  }
-}
 
-const transportes = [];
-transportes.push(
-  new Transporte(1234, "Logistica Pepe", 987, "tito gomez", 26, "Cordoba")
-); // la sentencia new es para crear
-transportes.push(
-  new Transporte(12345, "Logi trans", 654, "Matias Gomez", 30, "Buenos Aires")
-); // una nueva copia de la funcion constructora
-transportes.push(
-  new Transporte(123456, "TransVader", 321, "Tony Gomez", 28, "Concordia")
-);
-transportes.push(
-  new Transporte(
-    1234567,
-    "Transporte Messi",
-    123,
-    "Lionel Gomez",
-    28,
-    "Bariloche"
-  )
-);
+// function verTransportes() {
+//   transportes.forEach((Transporte) =>
+//     console.log(
+//       `El transporte ${Transporte.nombre} tiene una capacidad de ${Transporte.capacidad} pallets`
+//     )
+//   );
+// }
 
-function verTransportes() {
-  transportes.forEach((Transporte) =>
-    console.log(
-      `El transporte ${Transporte.nombre} tiene una capacidad de ${Transporte.capacidad} pallets`
-    )
-  );
-}
-
-//verTransportes()
+ //verTransportes()
 
 function capacidadCarga() {
   let numeroTte = parseInt(prompt("Ingrese el numero de transporte"));
@@ -91,12 +57,12 @@ function inicioCarga() {
   let iniciarCarga = confirm("Desea iniciar la carga");
   let hora = new Date().toLocaleTimeString();
   while (iniciarCarga) {
-    alert(`La carga ha comenzado a las ${hora}`);
+    console.log(`La carga ha comenzado a las ${hora}`);
     break;
   }
   if (iniciarCarga == false) {
     confirm("¿desea cancelar?");
-    alert("Cancelado por usuario");
+    console.log("Cancelado por usuario");
   }
 }
 
@@ -106,12 +72,12 @@ function finCarga() {
   let finCarga = confirm("Fin de carga");
   let hora = new Date().toLocaleTimeString();
   while (finCarga) {
-    alert(`La carga ha finalizado a las ${hora}`);
+    console.log(`La carga ha finalizado a las ${hora}`);
     break;
   }
   if (finCarga == false) {
     confirm("¿desea cancelar?");
-    alert("Cancelado por usuario");
+    console.log("Cancelado por usuario");
   }
 }
 //finCarga()
@@ -131,24 +97,24 @@ function buscarPedido() {
 }
 //buscarPedido()
 
-class expediciones {
-  constructor(nombre, cargaFinal) {
-    this.nombre = nombre;
-    this.cargaFinal = cargaFinal;
-    }
-  }
+// class expediciones {
+//   constructor(nombre, cargaFinal) {
+//     this.nombre = nombre;
+//     this.cargaFinal = cargaFinal;
+//     }
+//   }
 
-const expedicion = [];
-expedicion.push(new expediciones("Exp Dulceria", 0,));
-expedicion.push(new expediciones("Exp PF", 0,));
-expedicion.push(new expediciones("Exp UAT", 0,));
-expedicion.push(new expediciones("Exp Queseria", 0,));
+// const expedicion = [];
+// expedicion.push(new expediciones("Dulceria", 0,));
+// expedicion.push(new expediciones("PF", 0,));
+// expedicion.push(new expediciones("UAT", 0,));
+// expedicion.push(new expediciones("Queseria", 0,));
 
-function verExpediciones() {
-  expedicion.forEach((expediciones) =>
-    console.log(`Las expediciones activas son  ${expediciones.nombre}`)
-  );
-}
+// function verExpediciones() {
+//   expedicion.forEach((expediciones) =>
+//     console.log(`Las expediciones activas son  ${expediciones.nombre}`)
+//   );
+// }
 
 //verExpediciones()
 
@@ -161,4 +127,22 @@ function calcularCarga() {
   console.log(sumaExpe);
 }
 
-calcularCarga()
+//calcularCarga()
+
+// DOM - Document Object Model
+let ingreseExpedicion;
+let mensaje
+let titulo = document.getElementById("titulo");
+titulo.innerText = "Login My Cargo";
+
+
+
+function llamarExpe (){
+  ingreseExpedicion = document.getElementById("nombreExpe").value;
+  let listadoDeExpe = verExpediciones();
+  let expedicionRetornada = listadoDeExpe.find(expedicion => expedicion.nombre === ingreseExpedicion);
+  console.log(expedicionRetornada.nombre);
+ if (expedicionRetornada.nombre === ingreseExpedicion){
+   alert(`Bienvendido expedicion ${ingreseExpedicion}`);
+ }
+}

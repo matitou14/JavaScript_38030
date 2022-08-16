@@ -1,0 +1,42 @@
+.consultas__card {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: 420px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  font-family: $font-subtitle;
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background-color: rgba(255, 255, 255, 0.75);
+  border-radius: 12px;
+  border: 1px solid rgba(209, 213, 219, 0.3);
+}
+.consultas__title {
+  font-size: 24px;
+  padding: 10px 10px 0 10px;
+}
+.consultas__body {
+  padding: 10px;
+}
+.consultas__footer {
+  background: #f80c18;
+  border-radius: 0 0 15px 15px;
+  padding: 10px;
+  text-align: center;
+}
+.consultas__footer a {
+  text-decoration: none;
+  color: white;
+  &:hover {
+    color: rgb(243, 207, 44);
+  }
+}
+.consultas__footer a:after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  content: "";
+}
