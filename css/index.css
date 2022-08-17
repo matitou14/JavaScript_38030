@@ -66,96 +66,58 @@ p {
 
 h1 {
   font-weight: bold;
-  text-align: center; }
+  text-align: center;
+  font-family: "Russo One", sans-serif;
+  font-size: 1.6em; }
 
 .index__logo {
   max-width: 15%;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin: auto; }
+  margin: auto;
+  padding-bottom: 25px; }
 
 .index__section__login {
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
   justify-content: center;
-  padding: 1.2rem; }
+  margin: auto;
+  padding-bottom: 1.2rem;
+  width: 250px;
+  height: 180px;
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.1);
+  font-family: "Merriweather Sans", sans-serif;
+  background-color: rgba(235, 228, 228, 0.75);
+  border-radius: 12px;
+  border: 1px solid gray; }
 
 .index__login {
   display: flex;
   flex-direction: column;
-  margin: auto;
-  max-width: auto;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  font-family: "Merriweather Sans", sans-serif;
-  background-color: rgba(255, 255, 255, 0.75);
-  border-radius: 12px;
-  border: 1px solid rgba(209, 213, 219, 0.3); }
-
-.index__btn__login {
   margin: auto; }
 
-/* prueba login */
-
-#modal{
-  background-color: #fff; 
-  position: absolute;
-  top:50%;
-  left:50%;
-  transform: translate(-50%, -50%);
-  width: 200px;
-  height: 100px;
-  padding: 10px 20px;
-  border-radius: 5px;
-  font-size: 1.6rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  
-  animation-name: animatemodal;
-  animation-duration: 0.4s;
-  
-}
-
-#close-btn{
-  cursor: pointer;
-  font-size: 3rem;
-  color: #ff0000;
-
-}
-
-#modal-container{
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  background-color: rgba(0, 0, 0, .2);
-}
-
-  @keyframes animatemodal{
-      from{
-          top:-300px;  
-          opacity: 0;
-      }
-      to{
-          top:50%;
-          opacity: 1;
-      }
-  }
-
-
-/* fin prueba login */
-.index__label__input {
-  padding-left: 5px; }
+.index__btn__login {
+  padding-top: 1.2rem;
+  margin: auto; }
 
 .index__form__tte {
   display: flex;
   flex-direction: column;
-  align-items: center; }
+  justify-content: center;
+  align-items: center;
+  top: 150px;
+  margin: auto;
+  width: 350px;
+  height: 200px;
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.1);
+  font-family: "Merriweather Sans", sans-serif;
+  background-color: rgba(235, 228, 228, 0.75);
+  border-radius: 12px;
+  border: 1px solid gray; }
+
+.index__label__input {
+  padding-left: 5px; }
 
 .form-control {
   width: 100%;
