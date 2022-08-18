@@ -10,7 +10,8 @@ h1 {font-weight: bold;
 .index__logo {
   max-width: 15%;
   display: flex;
-  flex-direction: row;
+  flex-direction:row;
+  max-width: 20%;
   justify-content: center;
   margin: auto;
   padding-bottom: 25px;
@@ -72,10 +73,13 @@ padding-bottom: 10px;
 }
 .index__carga__pallet{
     display: flex;
-    flex-direction: row;
-    justify-content:flex-end;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content:center;
+    margin: auto;
     padding-right: 300px;
     align-items: center;
+    padding-left: 40%;
     padding-bottom: $spacing-vlarge;
 }
 .carga-form-control {

@@ -69,42 +69,6 @@
 
 
 
-class Transporte {
-  constructor(numeroTte, nombre, nroPedido, chofer, capacidad, destino) {
-    this.numeroTte = numeroTte;
-    this.nombre = nombre;
-    this.nroPedido = nroPedido;
-    this.chofer = chofer;
-    this.capacidad = capacidad;
-    this.destino = destino;
-    this.capacidadCarga = function (pallets) {
-      this.capacidad = this.capacidad - pallets;
-    };
-  }
-}
-function listaTransportes() {
-const transportes = [];
-transportes.push(
-  new Transporte(1234, "Logistica Pepe", 987, "tito gomez", 26, "Cordoba")
-); // la sentencia new es para crear
-transportes.push(
-  new Transporte(12345, "Logi trans", 654, "Matias Gomez", 30, "Buenos Aires")
-); // una nueva copia de la funcion constructora
-transportes.push(
-  new Transporte(123456, "TransVader", 321, "Tony Gomez", 28, "Concordia")
-);
-transportes.push(
-  new Transporte(
-    1234567,
-    "Transporte Messi",
-    123,
-    "Lionel Gomez",
-    28,
-    "Bariloche"
-  )
-);
-
-  }
 
  class expediciones {
   constructor(nombre, cargaFinal) {
@@ -125,3 +89,5 @@ return expedicion;
   //   console.log(`Las expediciones activas son  ${expediciones.nombre}`)
   // );
 //}
+
+ 

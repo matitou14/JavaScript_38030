@@ -15,10 +15,9 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Merriweather+Sans&family=Oxygen:wght@300&family=Russo+One&display=swap"
         rel="stylesheet">
-
-    <script  src="./js/funciones.js" defer></script>
-    <script  src="./js/variables.js" defer></script>
-    <script  src="./js/miarchivo.js" defer></script>
+    <!-- <script  src="./js/funciones.js" defer></script> -->
+    <!-- <script  src="./js/variables.js" defer></script> -->
+    <script defer src="./js/miarchivo.js" ></script>
     <title>App de gestion de cargas</title>
 </head>
 
@@ -33,7 +32,7 @@
             <label for="floatingInput"></label>
         </div>
         <div class="index__btn__login">
-            <button type="button" onclick="llamarExpe()" class="btn btn-primary">Ejecutar</button>
+            <button id="btn__login" type="button" class="btn btn-primary">Ejecutar</button>
             
         </div>
 
@@ -42,8 +41,8 @@
    <br>
     <section class="index__form__tte">
         <h1 id="titulo">Ingresa numero de transporte</h1>
-        <div class="form-floating mb-1">
-            <input id="nroTte" type="text" class="form-control" id="floatingInput" placeholder="Ingresa expedición">
+        <div class="form-floating mb-3">
+            <input id="nroTte" type="text" size="3" class="form-control" id="floatingInput" placeholder="Ingresa expedición">
             <label for="floatingInput">Ingresa el numero de transporte</label>
             <button type="button" class="btn btn-primary">Ejecutar</button>
             <button type="button" class="btn btn-secondary">Restablecer</button>
@@ -52,28 +51,28 @@
     </section>
     <section class="btn__carga">
         <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-            <input type="checkbox" onclick="inicioCarga()" class="btn-check" id="btncheck1" autocomplete="off">
+            <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
             <label class="btn btn-outline-primary" for="btncheck1">Inicio carga</label>
 
-            <input type="checkbox" onclick="finCarga()" class="btn-check" id="btncheck2" autocomplete="off">
+            <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off">
             <label class="btn btn-outline-primary" for="btncheck2">Fin carga</label>
         </div>
     </section>
     <section class="index__carga__pallet">
         <div class="form-floating mb-1">
-            <input type="text" class="form-control" id="floatingInput" placeholder="Pallets a cargar">
+            <input type="text" class="form-control"size="1" id="floatingInput" placeholder="Pallets a cargar">
             <label for="floatingInput">Pallets a cargar</label>
             <button type="button" class="btn btn-primary">Ejecutar</button>
 
         </div>
         <div class="form-floating mb-1">
-            <input type="text" class="form-control" width="50%" id="floatingInput" placeholder="Pallets a cargar">
+            <input type="text" class="form-control" size=1 id="floatingInput" placeholder="Pallets a cargar">
             <label for="floatingInput">Pallets cortados</label>
             <button type="button" class="btn btn-primary">Ejecutar</button>
 
         </div>
         <div class="form-floating mb-1">
-            <input type="text" class="form-control" id="floatingInput" placeholder="Pallets a cargar">
+            <input type="text" class="form-control" size="1" id="floatingInput" placeholder="Pallets a cargar">
             <label for="floatingInput">Pallets Picking</label>
             <button type="button" class="btn btn-primary">Ejecutar</button>
 
@@ -97,10 +96,11 @@
           </div>
 
   </section>
-
+  
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
         crossorigin="anonymous"></script>
-</body>
+        
+    </body>
 
 </html>
