@@ -69,22 +69,6 @@
 
 
 
-
- class expediciones {
-  constructor(nombre, cargaFinal) {
-    this.nombre = nombre;
-    this.cargaFinal = cargaFinal;
-    }
-  }
-function verExpediciones() {
-const expedicion = [];
-expedicion.push(new expediciones("Dulceria", 0,));
-expedicion.push(new expediciones("PF", 0,));
-expedicion.push(new expediciones("UAT", 0,));
-expedicion.push(new expediciones("Queseria", 0,));
-return expedicion;
-}
-// function verExpediciones() {
   // expedicion.forEach((expediciones) =>
   //   console.log(`Las expediciones activas son  ${expediciones.nombre}`)
   // );

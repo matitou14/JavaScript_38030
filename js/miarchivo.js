@@ -26,35 +26,7 @@
 //   }
 // }
 // login();
-class Transporte {
-  constructor(numeroTte, nombre, nroPedido, chofer, capacidad, destino) {
-    this.numeroTte = numeroTte;
-    this.nombre = nombre;
-    this.nroPedido = nroPedido;
-    this.chofer = chofer;
-    this.capacidad = capacidad;
-    this.destino = destino;
-    this.capacidadCarga = function (pallets) {
-    this.capacidad = this.capacidad - pallets;
-    };
-  }
-}
-//login();
-function verTransportes(){
-const transportes = [];
-transportes.push(
-  new Transporte(1234, "Logistica Pepe", 987, "tito gomez", 26, "Cordoba")
-); // la sentencia new es para crear
-transportes.push(
-  new Transporte(12345, "Logi trans", 654, "Matias Gomez", 30, "Buenos Aires")
-); // una nueva copia de la funcion constructora
-transportes.push(
-  new Transporte(123456, "TransVader", 321, "Tony Gomez", 28, "Concordia")
-);
-transportes.push(
-  new Transporte( 1234567, "Transporte Messi", 123, "Lionel Gomez", 28, "Bariloche"));
-  return transportes;
-  }
+
 
 
 // function verTransportes() {
@@ -129,6 +101,9 @@ function buscarPedido() {
 }
 //buscarPedido()
 
+// DOM - Document Object Model
+
+
 class expediciones {
   constructor(nombre, cargaFinal) {
     this.nombre = nombre;
@@ -144,13 +119,7 @@ expedicion.push(new expediciones("Queseria", 0,));
 return expedicion;
 }
 
-// function verExpediciones() {
-//   expediciones.forEach((expediciones) =>
-//     console.log(`Las expediciones activas son  ${expediciones.nombre}`)
-//   );
-// }
 
-//verExpediciones()
 
 function calcularCarga() {
   let dulceria = parseInt(prompt("Ingrese la carga de la expedicion Dulceria"));
@@ -163,7 +132,31 @@ function calcularCarga() {
 
 //calcularCarga()
 
-// DOM - Document Object Model
+class Transporte {
+  constructor(numeroTte, nombre, nroPedido, chofer, capacidad, destino) {
+    this.numeroTte = numeroTte;
+    this.nombre = nombre;
+    this.nroPedido = nroPedido;
+    this.chofer = chofer;
+    this.capacidad = capacidad;
+    this.destino = destino;
+    this.capacidadCarga = function (pallets) {
+    this.capacidad = this.capacidad - pallets;
+    };
+  }
+}
+
+function muestraTransportes() {  
+const transportes = [];
+transportes.push(new Transporte("1234", "Logistica Pepe", 987, "tito gomez", 26, "Cordoba")); // la sentencia new es para crear
+transportes.push(new Transporte("12345", "Logi trans", 654, "Matias Gomez", 30, "Buenos Aires")); // una nueva copia de la funcion constructora
+transportes.push(new Transporte("123456", "TransVader", 321, "Tony Gomez", 28, "Concordia"));
+transportes.push(new Transporte( "1234567", "Transporte Messi", 123, "Lionel Gomez", 28, "Bariloche"));
+return transportes;
+} 
+
+
+
 
 const titulo = document.querySelector("#titulo");
 titulo.innerText = "Login My Cargo";
@@ -182,15 +175,18 @@ let newColor = document.querySelectorAll("button");
           }
 
 let ingreseExpedicion;
-let mensaje
-                                                               
+
+ 
+
 function llamarExpe (){
   ingreseExpedicion = document.getElementById("nombreExpe").value;
   let listadoDeExpe = verExpediciones();
   let expedicionRetornada = listadoDeExpe.find(expedicion => expedicion.nombre.toUpperCase() === ingreseExpedicion.toUpperCase());
-  console.log(expedicionRetornada.nombre);
- if (expedicionRetornada.nombre) {
-   alert(`Bienvendido expedición ${ingreseExpedicion}`);
+  console.log(expedicionRetornada);
+ if (expedicionRetornada) {
+  document.getElementById("tituloExpe").innerHTML = expedicionRetornada.nombre;
+ }else {
+  document.getElementById("tituloExpe").innerHTML = "No existe la expedicion";
  }
 }
 const iniCarga = document.querySelector("#btncheck1")
@@ -198,15 +194,34 @@ iniCarga.addEventListener("click", inicioCarga)
 const finiCarga = document.querySelector("#btncheck2")
 finiCarga.addEventListener("click", finCarga)
 
-let ingreseTransporte;
+let ingreseTte;
+function llamarTte(){
+  ingreseTte = document.getElementById("floatingInput").value;
+  let lista = muestraTransportes();
+  let tteResultante = lista.find(transportes => transportes.numeroTte === ingreseTte);
+  console.log(tteResultante);
+  if(tteResultante){
+  document.getElementById("tituloCarga").innerHTML = tteResultante.nombre; 
+  }else {
+    document.getElementById("tituloCarga").innerHTML = "No existe el transporte";
+  }
+  }
 
-function llamarTte (){
-ingreseTransporte = document.getElementById("#nroTte").value;
-let listadoDeTte = verTransportes();
-let transRetornado = listadoDeTte.find(transportes => transportes.nombre === ingreseTransporte);
-console.log(transporteRetornado);
-}if(transRetornado.nombre){
-  alert(`Bienvenido transporte ${ingreseTransporte}`);
-}
 
 
+const boton2 = document.querySelector("#btn__grabar__tte");
+boton2.addEventListener("click", llamarTte)
+
+
+const inputTextTte = document.querySelector("#floatingInput");
+inputTextTte.addEventListener("keydown" , function teclado(tecla){
+  const codigo1 = tecla.keyCode; codigo1 === 13 ? llamarTte(): "error"});
+
+  
+
+
+
+
+
+
+  
