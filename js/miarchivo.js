@@ -167,13 +167,6 @@ inputText.addEventListener("keydown" , function teclado(tecla){
   const boton = document.querySelector("#btn__login");
 boton.addEventListener("click", llamarExpe)
 
-let newColor = document.querySelectorAll("button");
-          for (const color of newColor) {
-            color.addEventListener("mouseover", () => {
-              color.style.backgroundColor = "green";
-            });
-          }
-
 let ingreseExpedicion;
 
  
@@ -185,12 +178,14 @@ function llamarExpe (){
   console.log(expedicionRetornada);
  if (expedicionRetornada) {
   document.getElementById("tituloExpe").innerHTML = expedicionRetornada.nombre;
+  document.querySelector(".index__section__login").style.display = "none"; /*funcion para ocultar el formulario*/
  }else {
   document.getElementById("tituloExpe").innerHTML = "No existe la expedicion";
  }
 }
 const iniCarga = document.querySelector("#btncheck1")
 iniCarga.addEventListener("click", inicioCarga)
+
 const finiCarga = document.querySelector("#btncheck2")
 finiCarga.addEventListener("click", finCarga)
 
