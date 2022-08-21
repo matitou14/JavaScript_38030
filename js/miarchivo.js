@@ -178,17 +178,14 @@ function llamarExpe (){
   console.log(expedicionRetornada);
  if (expedicionRetornada) {
   document.getElementById("tituloExpe").innerHTML = expedicionRetornada.nombre;
-  document.querySelector(".index__section__login").style.display = "none"; /*funcion para ocultar el formulario*/
+  document.querySelector(".index__section__login").style.display = "none";
+  document.querySelector(".index__form__tte").style.display = "block"; /*funcion para ocultar el formulario*/
  }else {
   document.getElementById("tituloExpe").innerHTML = "No existe la expedicion";
  }
 }
-const iniCarga = document.querySelector("#btncheck1")
-iniCarga.addEventListener("click", inicioCarga)
 
-const finiCarga = document.querySelector("#btncheck2")
-finiCarga.addEventListener("click", finCarga)
-
+document.querySelector(".index__form__tte").style.display = "none";
 let ingreseTte;
 function llamarTte(){
   ingreseTte = document.getElementById("floatingInput").value;
@@ -197,11 +194,20 @@ function llamarTte(){
   console.log(tteResultante);
   if(tteResultante){
   document.getElementById("tituloCarga").innerHTML = tteResultante.nombre; 
+  document.querySelector(".index__form__tte").style.display = "none";
   }else {
     document.getElementById("tituloCarga").innerHTML = "No existe el transporte";
   }
   }
+const pallets = document.querySelector("#pallets__carga");
 
+const btnGrabaCarga = document.querySelector("#btn__grabar__tte");
+
+function guardarDatos (){
+  localStorage.setItem("pallets", pallets.value);
+}  
+
+// btn__pallets.addEventListener("click", inputPallets)
 
 
 const boton2 = document.querySelector("#btn__grabar__tte");
@@ -210,11 +216,41 @@ boton2.addEventListener("click", llamarTte)
 
 const inputTextTte = document.querySelector("#floatingInput");
 inputTextTte.addEventListener("keydown" , function teclado(tecla){
-  const codigo1 = tecla.keyCode; codigo1 === 13 ? llamarTte(): "error"});
+const codigo1 = tecla.keyCode; codigo1 === 13 ? llamarTte(): "error"});
 
-  
+const sectionCarga =document.querySelector(".card__carga");
 
+function mostrarCarga(){
+sectionCarga.innerHTML +=`<main class="index__section__carga">
+<div class="btn__cargas">
+<button class="btn__ini">Iniciar Carga </button>
+<button class="btn__fin" >Finalizar Carga</button>
+</div>
+<div class="carga__pallets">
+<label class="label__carga">Pallets cargados</label>
+<input class="input__carga" type="text"</input>
+<button class="btn__carga">Grabar</button>
 
+<label class="label__carga">Pallets picking</label>
+<input class= "input__carga"  type="text"></input>
+<button class="btn__carga">Grabar</button>
+
+<label class="label__carga">Pallets cortados</label>
+<input class="input__carga" type="text" ></input>
+<button class="btn__carga">Grabar</button>
+</div>
+<div class="btn__grabar__carga">
+<button>Grabar</button>
+<button>Cancelar</button>
+</main>`;
+}  
+mostrarCarga()
+
+const iniCarga = document.querySelector(".btn__ini")
+iniCarga.addEventListener("click", inicioCarga)
+
+const finiCarga = document.querySelector(".btn__fin")
+finiCarga.addEventListener("click", finCarga)
 
 
 

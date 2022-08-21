@@ -20,7 +20,7 @@ h1 {font-weight: bold;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: auto;
+  margin: 20px auto;
   padding-bottom: $spacing-small;
   width: 250px;
   height: 180px;
@@ -48,7 +48,7 @@ h1 {font-weight: bold;
   justify-content: center;
   align-items: center;
   top: 150px;
-  margin: auto;
+  margin: 20px auto;
   width: 350px;
   height: 200px;
   box-shadow: 0 6px 30px rgba(0, 0, 0, 0.1);
@@ -63,29 +63,66 @@ h1 {font-weight: bold;
 }
 
 
-.form-control {
-  width: 100%;
-padding-bottom: 10px;
+.card__carga{
+  display:grid;
+  grid-template-columns: 2, 1fr;
+  justify-content: center;
+  align-items: center;
+  top: 150px;
+  margin: auto;
+  width: 840px;
+  height: 720px;
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.1);
+  font-family: $font-subtitle;
+  background-color: rgba(235, 228, 228, 0.75);
+  border-radius: 12px;
+  border: 1px solid gray
+}
+.btn__cargas{
+  display: grid;
+  grid-template-columns: 1fr;
+  position: relative;
+  top: 150px;
+  right: 250px;
+  gap:20px;
+  width: 150px;
+  height: 150px;
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.1);
+
 }
 
-.btn__carga{
-    padding-left: 50px;
+.btn__css{
+font-family: $font-subtitle;
+background-color: aqua;
+  border-radius: 12px;
 }
-.index__carga__pallet{
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content:center;
-    margin: auto;
-    padding-right: 300px;
-    align-items: center;
-    padding-left: 40%;
-    padding-bottom: $spacing-vlarge;
+
+.carga__pallets{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  position: relative;
+  top: -100px;
+  left: 250px;
+  width: 100px;
+  }
+.input__carga{
+  display:grid;
+  gap: 80px;
+  width: 50%;
+  height: 150%;
+  margin: auto;
 }
-.carga-form-control {
-  width: 100%; } 
-.index__carga__button{
-    display: flex;
-    flex-direction: row;
-    justify-content:center;
+.label__carga{
+  display: grid;
+  grid-template-columns: 1fr;
+  position: relative;
+  top: 5px;
+  right: -20px;
+  font-family: $font-subtitle;
+  font-weight: bold;
+
+  
+
 }
+   
