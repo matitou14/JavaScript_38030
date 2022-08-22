@@ -99,7 +99,7 @@ h1 {
   grid-template-columns: 1fr;
   position: relative;
   top: 150px;
-  right: 250px;
+  right: -60px;
   gap: 20px;
   width: 150px;
   height: 150px;
@@ -107,8 +107,7 @@ h1 {
 
 .btn__css {
   font-family: "Merriweather Sans", sans-serif;
-  background-color: aqua;
-  border-radius: 12px; }
+  background-color: rgba(206, 4, 4, 0.75); }
 
 .carga__pallets {
   display: grid;
@@ -116,7 +115,7 @@ h1 {
   gap: 20px;
   position: relative;
   top: -100px;
-  left: 250px;
+  left: 600px;
   width: 100px; }
 
 .input__carga {
@@ -134,3 +133,17 @@ h1 {
   right: -20px;
   font-family: "Merriweather Sans", sans-serif;
   font-weight: bold; }
+
+.btn__grabar__carga {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  bottom: 50px;
+  left: 300px;
+  width: 100px;
+  gap: 20px; }
+
+footer {
+  font-family: "Oxygen", sans-serif;
+  font-weight: bold;
+  text-align: center; }
