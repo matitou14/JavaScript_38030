@@ -74,3 +74,15 @@
   // );
 //}
 
+const productos = [{
+  id: 1, producto: "Buzo blanco ilolay",
+  id: 2, producto: "Pantalon Blanco ilolay",
+  id: 3, producto: "Remera blanca ilolay",
+  id: 4, producto: "Chaleco blanco ilolay",
+
+}];
+
+const guardarProducto = (productos) => {localStorage.setItem("listaProductos", JSON.stringify(productos))};
+
+const obtenerProducto = JSON.parse(localStorage.getItem("listaProductos"))
+// const producto [ 

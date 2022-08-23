@@ -79,6 +79,21 @@ h1 {
 .index__label__input {
   padding-left: 5px; }
 
+.card__carga__titulo {
+  display: flex;
+  padding-left: 10px;
+  font-size: 1.6em;
+  text-align: center;
+  position: relative;
+  top: -85%;
+  left: 10%;
+  font-family: "Russo One", sans-serif;
+  padding-top: 1.2rem;
+  width: 200px;
+  height: 100x;
+  background-color: #869494;
+  border-radius: 12px; }
+
 .card__carga {
   display: grid;
   grid-template-columns: 2, 1fr;

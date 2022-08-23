@@ -185,11 +185,10 @@ function llamarExpe() {
   );
   console.log(expedicionRetornada);
   if (expedicionRetornada) {
-    document.getElementById("tituloExpe").innerHTML =
-      expedicionRetornada.nombre;
+    document.getElementById("tituloExpe").innerHTML = expedicionRetornada.nombre;
     document.querySelector(".index__section__login").style.display = "none";
-    document.querySelector(".index__form__tte").style.display =
-      "block"; 
+    document.querySelector(".index__form__tte").style.display = "block"; 
+    sectionCarga.innerHTML += `<h1 class="card__carga__titulo"> ${expedicionRetornada.nombre}</h1>`;
   } else {
     document.getElementById("tituloExpe").innerHTML = "No existe la expedicion";
   }
@@ -208,7 +207,7 @@ function llamarTte() {
     document.getElementById("tituloCarga").innerHTML = tteResultante.nombre;
     document.querySelector(".index__form__tte").style.display = "none";
     document.querySelector(".card__carga").style.display = "block";
-    
+    sectionCarga.innerHTML += `<h2 class= "card__carga__titulo"> ${tteResultante.nombre}, ${tteResultante.nroPedido}</h2>`;
 
   } else {
     document.getElementById("tituloCarga").innerHTML =
@@ -227,6 +226,8 @@ inputTextTte.addEventListener("keydown", function teclado(tecla) {
 });
 
 const sectionCarga = document.querySelector(".card__carga");
+
+
 
 function mostrarCarga() {
   sectionCarga.innerHTML += `<main class="index__section__carga">
@@ -247,6 +248,7 @@ function mostrarCarga() {
 <input id="pallets__cortados" class="input__carga" type="text" ></input>
 <button id="btn__cort"  class="btn__carga">Grabar</button>
 </div>
+
 <div class="btn__grabar__carga">
 <button class="btn__grabar__all"> Grabar</button>
 <button>Cancelar</button>
@@ -274,23 +276,25 @@ const btnGrabaTodo = document.querySelector(".btn__grabar__all");
 
 
 btnGrabarPallets.addEventListener("click", guardarPallets);
-btnGrabarPicking.addEventListener("click", guardarPicking);
-btnGrabarCortados.addEventListener("click", guardarCortados);
+// btnGrabarPicking.addEventListener("click", guardarPicking);
+// btnGrabarCortados.addEventListener("click", guardarCortados);
 // btnGrabaTodo.addEventListener("click", grabarTodo);
 
 
 
 function guardarPallets() {
   localStorage.setItem("Pallets enteros", cuantosPallets.value);
+  localStorage.setItem("Pallets picking", palletPicking.value)
+  localStorage.setItem("Pallets cortados", palletCortados.value)
 }
 
-function guardarPicking() {
-  localStorage.setItem("Pallets picking", palletPicking.value);
-}
+// function guardarPicking() {
+//   localStorage.setItem("Pallets picking", palletPicking.value);
+// }
 
-function guardarCortados() {
-  localStorage.setItem("Pallets cortados", palletCortados.value);
-}
+// function guardarCortados() {
+//   localStorage.setItem("Pallets cortados", palletCortados.value);
+// }
 
 function horaCarga() {
   localStorage.setItem("Hora de inicio", horaInicio);
