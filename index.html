@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans&family=Oxygen:wght@300&family=Russo+One&display=swap" rel="stylesheet">
-    <script defer src="./js/funciones.js" ></script>
+    <script defer src="./js/array.js" ></script>
     <!-- <script  src="./js/variables.js" defer></script> -->
     <script defer src="./js/miarchivo.js" ></script>
     <title>App de gestion de cargas</title>
@@ -38,11 +38,11 @@
     <section class="index__form__tte">
         <h1 id="titulo">Ingresa numero de transporte</h1>
         <div class="form-floating mb-3">
-            <input type="text" size="3" class="form-control" id="floatingInput" placeholder="Ingresa expedición">
+            <input id="tranporteTte" type="text" size="3" class="form-control" id="floatingInput" placeholder="Ingresa expedición">
             <label for="floatingInput">Ingresa el numero de transporte</label>
             <button id="btn__grabar__tte" type="button" class="btn btn-primary">Ejecutar</button>
             <button type="button" class="btn btn-secondary">Restablecer</button>
-            <button type="button" class="btn btn-info">Consulta</button>
+            <button id="consulta__tte" type="button" class="btn btn-info">Consulta</button>
             <h5 id="tituloCarga"></h5>
         </div>
     </section>
@@ -50,7 +50,8 @@
 
    </section>
    
-   <section class= "card__consulta">
+   <section id= "card__consulta">
+
     
 
    </section>

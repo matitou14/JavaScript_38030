@@ -153,3 +153,18 @@ footer{
   font-weight: bold;
   text-align: center;
 }
+#index__section__consulta{
+  display:grid;
+  grid-template-columns: 2, 1fr;
+  justify-content: center;
+  align-items: center;
+  top: 150px;
+  margin: auto;
+  width: 840px;
+  height: 720px;
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.1);
+  font-family: $font-subtitle;
+  background-color: rgba(235, 228, 228, 0.75);
+  border-radius: 12px;
+  border: 1px solid gray
+}
