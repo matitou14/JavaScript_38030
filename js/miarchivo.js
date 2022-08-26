@@ -1,69 +1,6 @@
+const titulo = document.querySelector("#titulo");
+titulo.innerText = "Login";
 
-
-
-
-
-
-
-// function capacidadCarga() {
-//   let numeroTte = parseInt(prompt("Ingrese el numero de transporte"));
-//   let pallets = parseInt(prompt("Ingrese la cantidad de pallets"));
-//   let transporte = transporte.find(
-//     (transporte) => transporte.numeroTte == numeroTte
-//   );
-//   transporte.capacidadCarga(pallets);
-//   console.log(
-//     `Al transporte ${transporte.nombre} le quedan ${transporte.capacidad} lugares vacios`
-//   );
-// }
-
-//capacidadCarga();
-
-// BOTONES PARA GESTIONAR INICIO - FIN DE CARGA
-function inicioCarga() {
-  let iniciarCarga = confirm("Desea iniciar la carga");
-  let horaIni = new Date().toLocaleTimeString();
-  iniCarga.addEventListener("click", inicioCarga);
-  while (iniciarCarga) {
-    console.log(`La carga ha comenzado a las ${horaIni}`);
-    break;
-  }
-  if (iniciarCarga == false) {
-    confirm("¿desea cancelar?");
-    console.log("Cancelado por usuario");
-  }
-}
-
-//inicioCarga()
-
-function finCarga() {
-  let finCarga = confirm("Fin de carga");
-  let horaFin = new Date().toLocaleTimeString();
-  while (finCarga) {
-    console.log(`La carga ha finalizado a las ${horaFin}`);
-    break;
-  }
-  if (finCarga == false) {
-    confirm("¿desea cancelar?");
-    console.log("Cancelado por usuario");
-  }
-}
-//finCarga()
-
-// FUNCION PARA VERIFICAR TRANSPORTE Y DESTINO (BOTON BUSQUEDA)
-
-function buscarPedido() {
-  let nroPedido = parseInt(prompt("Ingresa el numero de entrega"));
-  let entrega = transportes.find(
-    (transporte) => transporte.nroPedido === nroPedido
-  );
-  {
-    console.table(
-      `La entrega ${nroPedido} pertenece a ${entrega.nombre} con destino a ${entrega.destino}`
-    );
-  }
-}
-//buscarPedido()
 
 // DOM - Document Object Model
 
@@ -111,19 +48,45 @@ function muestraTransportes() {
 }
 
 
+// FUNCIONES PARA GESTIONAR INICIO - FIN DE CARGA
 
-// function verExpediciones(expediciones) {
-//   return expediciones;
-// }
-const titulo = document.querySelector("#titulo");
-titulo.innerText = "Login";
-const inputText = document.querySelector("#nombreExpe");
-inputText.addEventListener("keydown", function teclado(tecla) {
-  let codigo = tecla.keyCode;
-  codigo === 13 ? llamarExpe() : "error";
-});
-const boton = document.querySelector("#btn__login");
-boton.addEventListener("click", llamarExpe);
+function inicioCarga() {
+  let iniciarCarga = confirm("Desea iniciar la carga");
+  let horaIni = new Date().toLocaleTimeString();
+  
+  while (iniciarCarga) {
+    console.log(`La carga ha comenzado a las ${horaIni}`);
+    return horaIni;
+  }
+  if (iniciarCarga == false) {
+    confirm("¿desea cancelar?");
+    console.log("Cancelado por usuario");
+  }
+}
+
+//inicioCarga()
+const horaInicio = inicioCarga();
+
+
+function finCarga() {
+  let finCarga = confirm("Fin de carga");
+  let horaFin = new Date().toLocaleTimeString();
+ 
+  while (finCarga) {
+    console.log(`La carga ha finalizado a las ${horaFin}`);
+    return horaFin;
+  }
+  if (finCarga == false) {
+    confirm("¿desea cancelar?");
+    console.log("Cancelado por usuario");
+  }
+}
+//finCarga()
+
+const horaFinal = finCarga();
+
+
+//EXPEDICIONES
 
 let ingreseExpedicion;
 
@@ -150,7 +113,19 @@ function llamarExpe() {
 //  document.querySelector(".index__form__tte").style.display = "none";
 
 
- let ingreseTte;
+const inputText = document.querySelector("#nombreExpe");
+inputText.addEventListener("keydown", function teclado(tecla) {
+  let codigo = tecla.keyCode;
+  codigo === 13 ? llamarExpe() : "error";
+});
+const boton = document.querySelector("#btn__login");
+boton.addEventListener("click", llamarExpe);
+
+
+//TRANSPORTES 
+
+
+let ingreseTte;
 
 
 function llamarTte() {
@@ -181,6 +156,11 @@ inputTextTte.addEventListener("keydown", function teclado(tecla) {
   codigo1 === 13 ? llamarTte() : "error";
 });
 
+//SECTION CARGA
+
+
+
+ 
 const sectionCarga = document.querySelector(".card__carga");
 
 function mostrarCarga() {
@@ -221,9 +201,12 @@ const nombreExpedicion = document.querySelector("#nombreExpe");
 const nombreTransporte = document.querySelector("#tranporteTte"); 
 const btnGrabaTodo = document.querySelector("#btn__grabar__all");
 const iniCarga = document.querySelector("#btn__ini");
+const finiCarga = document.querySelector("#btn__fin");
+
 
 btnGrabaTodo.addEventListener("click", guardarPallets);
-
+iniCarga.addEventListener("click", inicioCarga);
+finiCarga.addEventListener("click", finCarga);
 const infoCargas = [];
 function guardarPallets (){
 const cantidadesCargas = {
@@ -233,11 +216,11 @@ const cantidadesCargas = {
 }
  
 const cargaDatos ={ 
-  // horaIni:  (horaIni),
-  // horaFin: (horaFin),
-  pallets: cantidadesCargas,
-  expediciones: nombreExpedicion.value,
+  Expedicion: nombreExpedicion.value,
   Transporte: nombreTransporte.value,
+  Pallets: cantidadesCargas,
+  Inicio:horaInicio,
+  Fin:horaFinal,
 }
 
 infoCargas.push(cargaDatos)
@@ -250,6 +233,14 @@ function recuperarDatos (){
   console.log(datos)
 }	
 recuperarDatos();
+
+
+
+
+
+
+
+
 
 // const sectionConsulta = document.querySelector("#card__consulta");
 
