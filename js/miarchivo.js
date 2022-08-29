@@ -99,24 +99,13 @@ function llamarExpe() {
       expedicion.nombre.toUpperCase() === ingreseExpedicion.toUpperCase()
   );
   console.log(expedicionRetornada);
-  if (expedicionRetornada) {
-    document.getElementById("tituloExpe").innerHTML =
-      expedicionRetornada.nombre;
-    // document.getElementById("tituloExpe").innerHTML = expedicionRetornada.nombre;
-    // document.querySelector(".index__section__login").style.display = "none";
-    // document.querySelector(".index__form__tte").style.display ="block";
-    // sectionCarga.innerHTML += `<h1 class="card__carga__titulo"> ${expedicionRetornada.nombre}</h1>`;
-  } else {
-    document.getElementById("tituloExpe").innerHTML = "No existe la expedicion";
-  }
-}
-//  document.querySelector(".index__form__tte").style.display = "none";
+  (expedicionRetornada) ? document.getElementById("tituloExpe").innerHTML = expedicionRetornada.nombre : document.getElementById("tituloExpe").innerHTML = "No existe la expedicion"};
 
 
 const inputText = document.querySelector("#nombreExpe");
 inputText.addEventListener("keydown", function teclado(tecla) {
   let codigo = tecla.keyCode;
-  codigo === 13 ? llamarExpe() : "error";
+  codigo === 13 ? llamarExpe() : "No existe expedicion";
 });
 const boton = document.querySelector("#btn__login");
 boton.addEventListener("click", llamarExpe);
@@ -135,17 +124,8 @@ function llamarTte() {
     (transportes) => transportes.numeroTte === ingreseTte
   );
   console.log(tteResultante);
-  if (tteResultante) {
-    document.getElementById("tituloCarga").innerHTML = tteResultante.nombre;
-    // document.querySelector(".index__form__tte").style.display = "none";
-    // document.querySelector(".card__carga").style.display = "block";
+ (tteResultante) ? document.getElementById("tituloCarga").innerHTML = tteResultante.nombre : document.getElementById("tituloCarga").innerHTML = "No existe el transporte";}
 
-    // sectionCarga.innerHTML =`<h2 class= "card__carga__titulo"> ${tteResultante.nombre}, ${tteResultante.nroPedido}</h2>`;
-  } else {
-    document.getElementById("tituloCarga").innerHTML =
-      "No existe el transporte";
-  }
-}
 
 const boton2 = document.querySelector("#btn__grabar__tte");
 boton2.addEventListener("click", llamarTte);
@@ -158,9 +138,6 @@ inputTextTte.addEventListener("keydown", function teclado(tecla) {
 
 //SECTION CARGA
 
-
-
- 
 const sectionCarga = document.querySelector(".card__carga");
 
 function mostrarCarga() {
