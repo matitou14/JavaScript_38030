@@ -83,6 +83,7 @@ function finCarga() {
 }
 //finCarga()
 
+
 const horaFinal = finCarga();
 
 
@@ -99,7 +100,7 @@ function llamarExpe() {
       expedicion.nombre.toUpperCase() === ingreseExpedicion.toUpperCase()
   );
   console.log(expedicionRetornada);
-  (expedicionRetornada) ? document.getElementById("tituloExpe").innerHTML = expedicionRetornada.nombre : document.getElementById("tituloExpe").innerHTML = "No existe la expedicion"};
+  (expedicionRetornada) ? toastExpe (`Bienvenido ${expedicionRetornada.nombre }`, "success") : sa("No existe la expedición", "warning") } //};
 
 
 const inputText = document.querySelector("#nombreExpe");
@@ -111,6 +112,22 @@ const boton = document.querySelector("#btn__login");
 boton.addEventListener("click", llamarExpe);
 
 
+const sa = (mensaje,icon ) => {
+  swal.fire ({
+    title:mensaje,
+    icon:icon,
+    confirmButtonText: "ok",
+  })
+
+}
+
+const toastExpe = (mensaje, error) =>{
+swal.fire({
+ toast: true,
+ text:mensaje,
+ timer: 3000,
+})
+}
 //TRANSPORTES 
 
 
@@ -124,7 +141,7 @@ function llamarTte() {
     (transportes) => transportes.numeroTte === ingreseTte
   );
   console.log(tteResultante);
- (tteResultante) ? document.getElementById("tituloCarga").innerHTML = tteResultante.nombre : document.getElementById("tituloCarga").innerHTML = "No existe el transporte";}
+ (tteResultante) ? toastExpe (`Inciando carga en ${tteResultante.nombre}`, "success") : sa("No existe el transporte", "error");}
 
 
 const boton2 = document.querySelector("#btn__grabar__tte");
@@ -181,7 +198,9 @@ const iniCarga = document.querySelector("#btn__ini");
 const finiCarga = document.querySelector("#btn__fin");
 
 
-btnGrabaTodo.addEventListener("click", guardarPallets);
+btnGrabaTodo.addEventListener("click", (guardarPallets) =>{
+  sa("Grabando datos","info");
+});
 iniCarga.addEventListener("click", inicioCarga);
 finiCarga.addEventListener("click", finCarga);
 const infoCargas = [];
