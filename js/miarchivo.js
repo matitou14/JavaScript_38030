@@ -51,41 +51,19 @@ function muestraTransportes() {
 // FUNCIONES PARA GESTIONAR INICIO - FIN DE CARGA
 
 function inicioCarga() {
-  let iniciarCarga = confirm("Desea iniciar la carga");
   let horaIni = new Date().toLocaleTimeString();
-  
-  while (iniciarCarga) {
-    console.log(`La carga ha comenzado a las ${horaIni}`);
-    return horaIni;
-  }
-  if (iniciarCarga == false) {
-    confirm("¿desea cancelar?");
-    console.log("Cancelado por usuario");
-  }
+  return horaIni;
 }
 
-//inicioCarga()
 const horaInicio = inicioCarga();
 
 
 function finCarga() {
-  let finCarga = confirm("Fin de carga");
-  let horaFin = new Date().toLocaleTimeString();
- 
-  while (finCarga) {
-    console.log(`La carga ha finalizado a las ${horaFin}`);
-    return horaFin;
-  }
-  if (finCarga == false) {
-    confirm("¿desea cancelar?");
-    console.log("Cancelado por usuario");
-  }
+let horaFin = new Date().toLocaleTimeString();
+return horaFin;
 }
-//finCarga()
 
-
-const horaFinal = finCarga();
-
+const horaFinal = finCarga ()
 
 //EXPEDICIONES
 
@@ -100,7 +78,8 @@ function llamarExpe() {
       expedicion.nombre.toUpperCase() === ingreseExpedicion.toUpperCase()
   );
   console.log(expedicionRetornada);
-  (expedicionRetornada) ? toastExpe (`Bienvenido ${expedicionRetornada.nombre }`, "success") : sa("No existe la expedición", "warning") } //};
+  (expedicionRetornada) ? toastExpe (`Bienvenido ${expedicionRetornada.nombre }`, "success") : sa("No existe la expedición", "warning") };
+  
 
 
 const inputText = document.querySelector("#nombreExpe");
@@ -121,11 +100,12 @@ const sa = (mensaje,icon ) => {
 
 }
 
-const toastExpe = (mensaje, error) =>{
+const toastExpe = (mensaje, icon) =>{
 swal.fire({
  toast: true,
+ icon: icon,
  text:mensaje,
- timer: 3000,
+ timer: 2000,
 })
 }
 //TRANSPORTES 
@@ -193,14 +173,30 @@ const palletPicking = document.querySelector("#pallet__picking");
 const palletCortados = document.querySelector("#pallets__cortados");
 const nombreExpedicion = document.querySelector("#nombreExpe");
 const nombreTransporte = document.querySelector("#tranporteTte"); 
-const btnGrabaTodo = document.querySelector("#btn__grabar__all");
+const btnGrabaTodo = document.querySelector("#btn__grabar__all")
 const iniCarga = document.querySelector("#btn__ini");
 const finiCarga = document.querySelector("#btn__fin");
 
 
-btnGrabaTodo.addEventListener("click", (guardarPallets) =>{
-  sa("Grabando datos","info");
+btnGrabaTodo.addEventListener("click", guardarPallets);
+btnGrabaTodo.addEventListener("click", () => {
+  Swal.fire({
+    title: '¿Desea guardar la carga?',
+    showDenyButton: true,
+    showCancelButton: true,
+    confirmButtonText: 'Guardar',
+    denyButtonText: `No guardar`,
+  }).then((result) => {
+    /* Read more about isConfirmed, isDenied below */
+    if (result.isConfirmed) {
+      Swal.fire('Guardado!', '', 'success')
+    } else if (result.isDenied) {
+      Swal.fire('Los cambios no se guardaron', '', 'info')
+    }
+  });
 });
+
+
 iniCarga.addEventListener("click", inicioCarga);
 finiCarga.addEventListener("click", finCarga);
 const infoCargas = [];
