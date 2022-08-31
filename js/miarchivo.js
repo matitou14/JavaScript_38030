@@ -84,14 +84,14 @@ function llamarExpe() {
   (expedicionRetornada) ? toastExpe (`Bienvenido ${expedicionRetornada.nombre }`, "success") : sa("No existe la expedición", "warning") 
  
  document.querySelector(".index__section__login").style.display = "none";
- let texto = tituloExpe.innerText
- const load = document.querySelector("#tituloExpe")
-  tituloExpe.innerHTML = loadingFork ();
+ 
+ const load = document.querySelector("#login__carga")
+  login__carga.innerHTML = loadingFork ();
 
   setTimeout(() => {
 document.querySelector(".index__form__tte").style.display ="block";
-  tituloExpe.innerText = texto;
-  
+  login__carga.innerText = load;
+
 }, 3000);
 };
 
@@ -142,7 +142,11 @@ function llamarTte() {
  (tteResultante) ? toastExpe (`Inciando carga en ${tteResultante.nombre}`, "success") : sa("No existe el transporte", "error");
 
  document.querySelector(".card__carga").style.display = "block";
-document.querySelector(".index__form__tte").style.display = "none";
+
+ setTimeout(() => {
+  document.querySelector(".index__form__tte").style.display = "none";  
+ }, 1500);
+
 }
 
 
