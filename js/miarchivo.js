@@ -47,6 +47,9 @@ function muestraTransportes() {
   return transportes;
 }
 
+const loadingFork = () => {
+  return `<img src="/img/gif/final-comp-unscreen.gif">`;
+    }
 
 // FUNCIONES PARA GESTIONAR INICIO - FIN DE CARGA
 
@@ -79,11 +82,15 @@ function llamarExpe() {
   );
   console.log(expedicionRetornada);
   (expedicionRetornada) ? toastExpe (`Bienvenido ${expedicionRetornada.nombre }`, "success") : sa("No existe la expedición", "warning") 
- document
+ 
  document.querySelector(".index__section__login").style.display = "none";
- document.querySelector(".index__form__tte").style.display ="block";
+ let texto = tituloExpe.innerText
+  tituloExpe.innerHTML = loadingFork();
 
-
+  setTimeout(() => {
+;document.querySelector(".index__form__tte").style.display ="block";
+  tituloExpe.innerText = texto;
+}, 3000);
 };
 
 
@@ -116,9 +123,7 @@ swal.fire({
 })
 }
 
-const loadingFork = () => {
-  return `<img src="/img/gif/final-comp-unscreen.gif "width="100%">`
-};
+
 //TRANSPORTES 
 
 document.querySelector(".index__form__tte").style.display = "none";
