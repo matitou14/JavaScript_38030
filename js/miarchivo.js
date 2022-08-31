@@ -85,11 +85,13 @@ function llamarExpe() {
  
  document.querySelector(".index__section__login").style.display = "none";
  let texto = tituloExpe.innerText
-  tituloExpe.innerHTML = loadingFork();
+ const load = document.querySelector("#tituloExpe")
+  tituloExpe.innerHTML = loadingFork ();
 
   setTimeout(() => {
-;document.querySelector(".index__form__tte").style.display ="block";
+document.querySelector(".index__form__tte").style.display ="block";
   tituloExpe.innerText = texto;
+  
 }, 3000);
 };
 
