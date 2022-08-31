@@ -78,8 +78,15 @@ function llamarExpe() {
       expedicion.nombre.toUpperCase() === ingreseExpedicion.toUpperCase()
   );
   console.log(expedicionRetornada);
-  (expedicionRetornada) ? toastExpe (`Bienvenido ${expedicionRetornada.nombre }`, "success") : sa("No existe la expedición", "warning") };
-  
+  (expedicionRetornada) ? toastExpe (`Bienvenido ${expedicionRetornada.nombre }`, "success") : sa("No existe la expedición", "warning") 
+ document
+ document.querySelector(".index__section__login").style.display = "none";
+ document.querySelector(".index__form__tte").style.display ="block";
+
+
+};
+
+
 
 
 const inputText = document.querySelector("#nombreExpe");
@@ -105,12 +112,16 @@ swal.fire({
  toast: true,
  icon: icon,
  text:mensaje,
- timer: 2000,
+ timer: 1000, 
 })
 }
+
+const loadingFork = () => {
+  return `<img src="/img/gif/final-comp-unscreen.gif "width="100%">`
+};
 //TRANSPORTES 
 
-
+document.querySelector(".index__form__tte").style.display = "none";
 let ingreseTte;
 
 
@@ -121,7 +132,11 @@ function llamarTte() {
     (transportes) => transportes.numeroTte === ingreseTte
   );
   console.log(tteResultante);
- (tteResultante) ? toastExpe (`Inciando carga en ${tteResultante.nombre}`, "success") : sa("No existe el transporte", "error");}
+ (tteResultante) ? toastExpe (`Inciando carga en ${tteResultante.nombre}`, "success") : sa("No existe el transporte", "error");
+
+ document.querySelector(".card__carga").style.display = "block";
+document.querySelector(".index__form__tte").style.display = "none";
+}
 
 
 const boton2 = document.querySelector("#btn__grabar__tte");
@@ -138,7 +153,7 @@ inputTextTte.addEventListener("keydown", function teclado(tecla) {
 const sectionCarga = document.querySelector(".card__carga");
 
 function mostrarCarga() {
- 
+
 sectionCarga.innerHTML = `<main class="index__section__carga">
 <div class="btn__cargas">
 <button id="btn__ini">Iniciar Carga </button>
@@ -162,11 +177,14 @@ sectionCarga.innerHTML = `<main class="index__section__carga">
 <button id="btn__grabar__all" class="btn__grabar" > Grabar</button>
 <button>Cancelar</button>
 </main>`;
+
+
 }
 mostrarCarga();
 
 //CARD carga
-document.querySelector(".card__carga").style.display = "block";
+document.querySelector(".card__carga").style.display = "none";
+
 
 const cuantosPallets = document.querySelector("#pallet__entero");
 const palletPicking = document.querySelector("#pallet__picking");
@@ -178,7 +196,7 @@ const iniCarga = document.querySelector("#btn__ini");
 const finiCarga = document.querySelector("#btn__fin");
 
 
-btnGrabaTodo.addEventListener("click", guardarPallets);
+
 btnGrabaTodo.addEventListener("click", () => {
   Swal.fire({
     title: '¿Desea guardar la carga?',
@@ -193,6 +211,10 @@ btnGrabaTodo.addEventListener("click", () => {
     } else if (result.isDenied) {
       Swal.fire('Los cambios no se guardaron', '', 'info')
     }
+    
+    document.querySelector(".card__carga").style.display = "none";
+    document.querySelector(".index__form__tte").style.display = "block";
+    return guardarPallets();
   });
 });
 
