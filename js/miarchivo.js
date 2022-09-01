@@ -48,7 +48,7 @@ function muestraTransportes() {
 }
 
 const loadingFork = () => {
-  return `<img src="/img/gif/final-comp-unscreen.gif">`;
+  return `<img src="./img/gif/final-comp-unscreen.gif" width="50%">`;
     }
 
 // FUNCIONES PARA GESTIONAR INICIO - FIN DE CARGA
@@ -81,16 +81,22 @@ function llamarExpe() {
       expedicion.nombre.toUpperCase() === ingreseExpedicion.toUpperCase()
   );
   console.log(expedicionRetornada);
-  (expedicionRetornada) ? toastExpe (`Bienvenido ${expedicionRetornada.nombre }`, "success") : sa("No existe la expedición", "warning") 
- 
- document.querySelector(".index__section__login").style.display = "none";
- let texto = tituloExpe.innerText
-  tituloExpe.innerHTML = loadingFork();
-
+  (expedicionRetornada) ? toastExpe (`Bienvenido ${expedicionRetornada.nombre }`, "success") : sa("No existe la expedición", "warning")
+  let loading = document.querySelector("#loading");
+  loading.innerHTML = loadingFork();
   setTimeout(() => {
-;document.querySelector(".index__form__tte").style.display ="block";
-  tituloExpe.innerText = texto;
-}, 3000);
+    let loading = document.querySelector("#loading").style.display = "none";
+    
+   }, 4000);
+   
+    setTimeout(() => {
+   
+      document.querySelector(".index__form__tte").style.display ="block"; 
+        }, 4000);
+
+  document.querySelector(".index__section__login").style.display = "none";
+ 
+  
 };
 
 
@@ -138,9 +144,23 @@ function llamarTte() {
   );
   console.log(tteResultante);
  (tteResultante) ? toastExpe (`Inciando carga en ${tteResultante.nombre}`, "success") : sa("No existe el transporte", "error");
+ 
+ let loading = document.querySelector("#loading").style.display = "block";
+ loading.innerHTML = loadingFork();
+ 
+ setTimeout(() => {
+  let loading = document.querySelector("#loading").style.display = "none";
+  
+  
+}, 4000);
+  
+   setTimeout(() => {
+  
+    document.querySelector(".card__carga").style.display = "block";; 
+       }, 4000);
 
- document.querySelector(".card__carga").style.display = "block";
-document.querySelector(".index__form__tte").style.display = "none";
+       document.querySelector(".index__form__tte").style.display = "none";
+
 }
 
 
@@ -281,6 +301,14 @@ recuperarDatos();
 
 // let consultaTransoporte = document.querySelector("#btn__consulta");
 
+
+
+// listaTransportes.forEach(transportes => {
+// 	ingreseTte = document.getElementById("floatingInput").value;
+// 	let transporteConsultado = listaTransportes.find(listaTransportes.nroPedido === ingreseTte);
+// 	console.log(transportes.nombre);
+// 	return transporteConsultado.nombre
+// });
 // function consultarTransporte (){
 //   ingreseTte = document.getElementById("floatingInput").value;
 //   let lista = muestraTransportes();
@@ -303,10 +331,13 @@ recuperarDatos();
 //     document.getElementById("nro de pedido incorrecto").innerHTML =
 //       "No existe el transporte";
 //   }
-// }
+// // }
 
 // const boton3 = document.querySelector("#consulta__tte");
 // boton3.addEventListener("click", consultarTransporte);
 
-// const finiCarga = document.querySelector(".btn__fin");
-// finiCarga.addEventListener("click" , .value);
+// const listaTransportes = [
+// 	{numeroTte:"1234", nombre: "Logistica Pepe", nroPedido: "987", chofer: "Tito Gomez", capacidad: 30, destino: "Cordoba" },
+// 	{numeroTte:"12345", nombre: "Logi Trans", nroPedido: "654", chofer: "Matias Gomez", capacidad: 28, destino: "Buenos Aires"},
+// 	{numeroTte:"123456", nombre: "TransVader", nroPedido: "321", chofer: "Tony Gomez", capacidad: 28, destino: "Bariloche"},
+// 	{numeroTte:"1234567", nombre: "Transporte Messi", nroPedido: "123", chofer: "Lionel Gomez", capacidad: 28, destino: "Concordia"}];

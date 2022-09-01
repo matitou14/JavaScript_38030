@@ -68,6 +68,11 @@ h1 {
   padding-top: 1.2rem;
   margin: auto; }
 
+.loading__fork {
+  margin: 0 auto;
+  position: absolute;
+  right: 330px; }
+
 .index__form__tte {
   display: flex;
   flex-direction: column;
