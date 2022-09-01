@@ -195,7 +195,7 @@ footer {
   .index__logo {
     display: flex;
     flex-wrap: wrap;
-    max-width: 100%; } }
+    max-width: 50%; } }
 
 @media (max-width: 480px) {
   .index__section__login
@@ -210,4 +210,5 @@ footer {
     display: flex;
     flex-wrap: wrap;
     max-width: 100%;
-    align-items: center; } }
+    position: relative;
+    left: 100px; } }
