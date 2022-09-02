@@ -123,16 +123,20 @@ h1 {font-weight: bold;
   gap:20px;
   width: 150px;
   height: 150px;
-  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.1);
-
 }
-
-.btn__css{
+.btn__styles{
+  color: #318acc;
+  background-color:rgba(0, 0, 0, 0);
   font-family: $font-subtitle;
-  background-color: rgba(206, 4, 4, 0.75);
+  font-weight: bold;
+  border: 2px solid;
+  transition: all 1s ease;
 
+&:hover{
+  background: #318aac;
+  color:#fff !important; 
 }
-
+}
 .carga__pallets{
   display: grid;
   grid-template-columns: 1fr;
@@ -160,14 +164,25 @@ h1 {font-weight: bold;
 
 }
 .btn__grabar__carga{
-  display: flex;
-  flex-direction: row;
   position:relative;
   bottom: 50px;
-  left: 300px;
-  width: 100px;
-  gap: 20px;
+  left: 350px;
+
 }
+.btn__styles__grabar{
+  color: #318acc;
+  background-color:rgba(0, 0, 0, 0);
+  font-family: $font-subtitle;
+  border: 2px solid;
+  transition: all 1s ease;
+  width: 150px;
+  height: 50px;
+&:hover{
+  background: #318aac;
+  color:#fff !important; 
+}
+}
+
 footer{
   font-family: $font-general;
   font-weight: bold;

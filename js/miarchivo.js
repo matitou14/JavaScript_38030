@@ -181,8 +181,9 @@ function mostrarCarga() {
 
 sectionCarga.innerHTML = `<main class="index__section__carga">
 <div class="btn__cargas">
-<button id="btn__ini">Iniciar Carga </button>
-<button id="btn__fin" >Finalizar Carga</button>
+<button class="btn__styles" id="btn__preset">Transporte en expedicion</button>
+<button class="btn__styles" id="btn__ini">Iniciar Carga </button>
+<button class="btn__styles" id="btn__fin" >Finalizar Carga</button>
 </div>
 <div class="carga__pallets">
 <label class="label__carga">Pallets cargados</label>
@@ -199,8 +200,8 @@ sectionCarga.innerHTML = `<main class="index__section__carga">
 </div>
 
 <div class="btn__grabar__carga">
-<button id="btn__grabar__all" class="btn__grabar" > Grabar</button>
-<button>Cancelar</button>
+<button class="btn__styles__grabar" id="btn__grabar__all" class="btn__grabar" > Grabar</button>
+
 </main>`;
 
 
