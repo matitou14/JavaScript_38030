@@ -67,24 +67,35 @@ const horaFinal = finCarga ()
 
 //EXPEDICIONES
 
+let exp =[]; 
+const listaExpedi = document.querySelector(".index__section__login"); 
 let ingreseExpedicion;
-
-
-function llamarExpe() {
-  ingreseExpedicion = document.getElementById("nombreExpe").value;
-  let listadoDeExpe = verExpediciones();
+function conocerExpe() {
+  fetch(`/js/expediciones.json`)
+  .then((response) => response.json())
+  .then((data) =>  exp = data)
+  .catch((error) => {
+      console.error("Error:", error);
+  }) 
+console.table(exp)
+return exp
+}
+ function llamarExpe() {
+ ingreseExpedicion = document.getElementById("nombreExpe").value;
+  let listadoDeExpe = conocerExpe();
   let expedicionRetornada = listadoDeExpe.find(
-    (expedicion) =>
-      expedicion.nombre.toUpperCase() === ingreseExpedicion.toUpperCase()
+    (exp) => exp.nombre.toUpperCase() === ingreseExpedicion.toUpperCase()
   );
   console.log(expedicionRetornada);
-  (expedicionRetornada) ? toastExpe (`Bienvenido ${expedicionRetornada.nombre }`, "success") : sa("No existe la expedición", "warning") 
- document
- document.querySelector(".index__section__login").style.display = "none";
- document.querySelector(".index__form__tte").style.display ="block";
+(expedicionRetornada) ? toastExpe (`Bienvenido ${expedicionRetornada.nombre }`, "success") : sa("No existe la expedición", "warning") 
+  }
+
+//  document
+//  document.querySelector(".index__section__login").style.display = "none";
+//  document.querySelector(".index__form__tte").style.display ="block";
 
 
-};
+// };
 
 
 
@@ -92,22 +103,22 @@ function llamarExpe() {
 const inputText = document.querySelector("#nombreExpe");
 inputText.addEventListener("keydown", function teclado(tecla) {
   let codigo = tecla.keyCode;
-  codigo === 13 ? llamarExpe() : "No existe expedicion";
+  codigo === 13 ? llamarExpe (): "No existe expedicion";
 });
 const boton = document.querySelector("#btn__login");
-boton.addEventListener("click", llamarExpe);
+boton.addEventListener("click", llamarExpe)
+;
 
 
-const sa = (mensaje,icon ) => {
+let sa = (mensaje,icon ) => {
   swal.fire ({
     title:mensaje,
     icon:icon,
-    confirmButtonText: "ok",
   })
 
 }
 
-const toastExpe = (mensaje, icon) =>{
+let toastExpe = (mensaje, icon) =>{
 swal.fire({
  toast: true,
  icon: icon,
