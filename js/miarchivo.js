@@ -2,21 +2,6 @@ const titulo = document.querySelector("#titulo");
 titulo.innerText = "Login";
 
 
-// DOM - Document Object Model
-
-// class expediciones {
-//   constructor(nombre) {
-//     this.nombre = nombre;
-//   }
-// }
-// function verExpediciones() {
-//   const expedicion = [];
-//   expedicion.push(new expediciones("Dulceria"));
-//   expedicion.push(new expediciones("PF"));
-//   expedicion.push(new expediciones("UAT"));
-//   expedicion.push(new expediciones("Queseria"));
-//   return expedicion;
-
 
 class Transporte {
   constructor(numeroTte, nombre, nroPedido, chofer, capacidad, destino) {
@@ -50,22 +35,7 @@ const loadingFork = () => {
   return `<img src="./img/gif/final-comp-unscreen.gif" width="50%">`;
     }
 
-// FUNCIONES PARA GESTIONAR INICIO - FIN DE CARGA
 
-function inicioCarga() {
-  let horaIni = new Date().toLocaleTimeString();
-  return horaIni;
-}
-
-const horaInicio = inicioCarga();
-
-
-function finCarga() {
-let horaFin = new Date().toLocaleTimeString();
-return horaFin;
-}
-
-const horaFinal = finCarga ()
 
 //EXPEDICIONES
 
@@ -73,7 +43,7 @@ let exp = []
     fetch(`js/expediciones.json`)
   .then((response) => response.json())
   .then((data) => exp = data)
-  .catch((error) => { console.error("Error:", error) })
+  .catch((error) => { sa("Error:", error) })
 
  
 
@@ -104,12 +74,7 @@ function llamarExpe() {
         }, 4000);
 
   document.querySelector(".index__section__login").style.display = "none";
-
-  
 };
- 
-
-
 
 const inputText = document.querySelector("#nombreExpe");
 inputText.addEventListener("keydown", function teclado(tecla) {
@@ -124,7 +89,6 @@ const sa = (mensaje,icon ) => {
   swal.fire ({
     title:mensaje,
     icon:icon,
-    confirmButtonText: "ok",
   })
 
 }
@@ -132,15 +96,27 @@ const sa = (mensaje,icon ) => {
 const toastExpe = (mensaje, icon) =>{
 swal.fire({
  toast: true,
+ showConfirmButton: false,
  icon: icon,
  text:mensaje,
  timer: 1000, 
 })
 }
+const toastExpecarga = (mensaje, icon, bgcolor) =>{
+  swal.fire({
+   toast: true,
+   icon: icon,
+   text:mensaje,
+   showConfirmButton: false,
+   timer: 1000, 
+   position: "top-right",
+  background: bgcolor,
+   color: "white",
+  })
+  }
 
 
-
-//TRANSPORTES 
+//TRANSPORTES (formualario para cargar los transportes)
 
 document.querySelector(".index__form__tte").style.display = "none";
 let ingreseTte;
@@ -183,7 +159,10 @@ inputTextTte.addEventListener("keydown", function teclado(tecla) {
   codigo1 === 13 ? llamarTte() : "error";
 });
 
-// //SECTION CARGA
+// const boton4 = document.querySelector("#btn___restablecer")
+// boton4.addEventListener("click", llamarTte); 
+
+//SECTION CARGA (en esta section se guardan los datos de la carga, inicio y fin de carga)
 
 const sectionCarga = document.querySelector(".card__carga");
 
@@ -218,7 +197,25 @@ sectionCarga.innerHTML = `<main class="index__section__carga">
 }
 mostrarCarga();
 
-//CARD carga
+// FUNCIONES PARA GESTIONAR INICIO - FIN DE CARGA
+
+function inicioCarga() {
+  let horaIni = new Date().toLocaleTimeString();
+  (horaIni) ? toastExpecarga (`Iniciando carga`, "success", "red") : sa("No existe el transporte", "error");
+  return horaIni;
+}
+
+
+
+function finCarga() {
+let horaFin = new Date().toLocaleTimeString();
+(horaFin) ? toastExpecarga(`Finalizando carga`, "success", "red") : sa("No existe el transporte", "error");
+return horaFin;
+}
+
+
+
+
 document.querySelector(".card__carga").style.display = "none";
 
 
@@ -241,7 +238,7 @@ btnGrabaTodo.addEventListener("click", () => {
     confirmButtonText: 'Guardar',
     denyButtonText: `No guardar`,
   }).then((result) => {
-    /* Read more about isConfirmed, isDenied below */
+
     if (result.isConfirmed) {
       Swal.fire('Guardado!', '', 'success')
       document.querySelector(".card__carga").style.display = "none"
@@ -271,7 +268,7 @@ const cargaDatos ={
   Expedicion: nombreExpedicion.value,
   Transporte: nombreTransporte.value,
   Pallets: cantidadesCargas,
-  Inicio:horaInicio,
+  Inicio:inicioCarga(),
   Fin:finCarga(),
 }
 
@@ -288,74 +285,51 @@ recuperarDatos();
 
 
 
-//CONSULTAS
-
+//CONSULTAS DE TRANSPORTES (nombre, transporte, capacidad)
+let ttes = []
 const consultaTte = ()=> {
   fetch(`js/transportes.json`)
     .then((response) => response.json())
-    .then((data) => {console.table(data)})
+    .then((data) => ttes = data)
+    .catch((error) => console(error));
+
 }
 
 
+const sectionConsulta = document.querySelector("#card__consulta");
+
+function mostrarConsulta (){
+sectionConsulta.innerHTML = `<main id="index__section__consulta">
+<div id="card__consulta"> 
+<h5 class="titulo__consulta">${Transporte.nombre}</h5>
+<p class="parrafo__consulta2">${Transporte.nroPedido}</p>
+<p class="parrafo__consulta3">${Transporte.chofer}</p>
+<p class="parrafo__consulta4">${Transporte.destino}</p>
+<p class="parrafo__consulta5">${Transporte.capacidad}</p>
+</div>
+<button id="btn__consulta">volver</button>
+</main>`;
+
+}
+
+mostrarConsulta();
+
+document.querySelector("#index__section__consulta").style.display = "none";
+  
+let consultaTransporte;
+function consultaTtee(){
+
+  consultaTransporte = document.querySelector("#transporteTte").value;
+  let lista = ttes;
+  let transporteConsultado = lista.find( (transportes) => transportes.nroPedido === consultaTransporte);
+  console.log(transporteConsultado);
+  (transporteConsultado) ? toastExpe ("Realizando consulta", "success") : sa("Ingresa un número de pedido válido", "error");
 
 
-// const sectionConsulta = document.querySelector("#card__consulta");
-
-// function mostrarConsulta (){
-// sectionConsulta.innerHTML = `<main id="index__section__consulta">
-// <div id="card__consulta"> 
-// <h5 class="titulo__consulta">nombre tte</h5>
-// <p class="parrafo__consulta2">entregas</p>
-// <p class="parrafo__consulta3">chofer</p>
-// <p class="parrafo__consulta4">destino</p>
-// <p class="parrafo__consulta5">capacidad</p>
-// </div>
-// <button id="btn__consulta">volver</button>
-// </main>`;
-
-// }
-
-// mostrarConsulta();
-
-// let consultaTransoporte = document.querySelector("#btn__consulta");
-
-
-
-// listaTransportes.forEach(transportes => {
-// 	ingreseTte = document.getElementById("floatingInput").value;
-// 	let transporteConsultado = listaTransportes.find(listaTransportes.nroPedido === ingreseTte);
-// 	console.log(transportes.nombre);
-// 	return transporteConsultado.nombre
-// });
-// function consultarTransporte (){
-//   ingreseTte = document.getElementById("floatingInput").value;
-//   let lista = muestraTransportes();
-//   let transporteConsultado = lista.find(
-//     (transportes) => transportes.nroPedido === ingreseTte
-//   );
-//   console.log(transporteConsultado);
-//   if (transporteConsultado) {
-//      document.querySelector(".index__form__tte").style.display = "block";
-//      document.querySelector("#index__section__consulta").style.display ="block"; 
-//   sectionConsulta.innerHTML =
-//      `<h5> ${transporteConsultado.nombre}</h>
-//      <p> ${transporteConsultado.nroPedido}</p>
-//      <p> ${transporteConsultado.chofer}</p>
-//      <p> ${transporteConsultado.destino}</p>
-//      <p> ${transporteConsultado.capacidad}</p>
-//      `;
+  
  
-// } else {
-//     document.getElementById("nro de pedido incorrecto").innerHTML =
-//       "No existe el transporte";
-//   }
-// // }
+}
+const boton3 = document.querySelector("#consulta__tte");
+boton3.addEventListener("click", consultaTtee);
 
-// const boton3 = document.querySelector("#consulta__tte");
-// boton3.addEventListener("click", consultarTransporte);
 
-// const listaTransportes = [
-// 	{numeroTte:"1234", nombre: "Logistica Pepe", nroPedido: "987", chofer: "Tito Gomez", capacidad: 30, destino: "Cordoba" },
-// 	{numeroTte:"12345", nombre: "Logi Trans", nroPedido: "654", chofer: "Matias Gomez", capacidad: 28, destino: "Buenos Aires"},
-// 	{numeroTte:"123456", nombre: "TransVader", nroPedido: "321", chofer: "Tony Gomez", capacidad: 28, destino: "Bariloche"},
-// 	{numeroTte:"1234567", nombre: "Transporte Messi", nroPedido: "123", chofer: "Lionel Gomez", capacidad: 28, destino: "Concordia"}];
