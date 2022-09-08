@@ -4,19 +4,18 @@ titulo.innerText = "Login";
 
 // DOM - Document Object Model
 
-class expediciones {
-  constructor(nombre) {
-    this.nombre = nombre;
-  }
-}
-function verExpediciones() {
-  const expedicion = [];
-  expedicion.push(new expediciones("Dulceria"));
-  expedicion.push(new expediciones("PF"));
-  expedicion.push(new expediciones("UAT"));
-  expedicion.push(new expediciones("Queseria"));
-  return expedicion;
-}
+// class expediciones {
+//   constructor(nombre) {
+//     this.nombre = nombre;
+//   }
+// }
+// function verExpediciones() {
+//   const expedicion = [];
+//   expedicion.push(new expediciones("Dulceria"));
+//   expedicion.push(new expediciones("PF"));
+//   expedicion.push(new expediciones("UAT"));
+//   expedicion.push(new expediciones("Queseria"));
+//   return expedicion;
 
 
 class Transporte {
@@ -37,7 +36,7 @@ function muestraTransportes() {
   const transportes = [];
   transportes.push(
     new Transporte("1234", "Logistica Pepe", "987", "tito gomez", 26, "Cordoba")
-  ); // la sentencia new es para crear
+  );
   transportes.push(
     new Transporte("12345", "Logi trans", "654", "Matias Gomez", 30, "Buenos Aires")); // una nueva copia de la funcion constructora
   transportes.push(
@@ -70,18 +69,28 @@ const horaFinal = finCarga ()
 
 //EXPEDICIONES
 
+let exp = []
+    fetch(`js/expediciones.json`)
+  .then((response) => response.json())
+  .then((data) => exp = data)
+  .catch((error) => { console.error("Error:", error) })
+
+ 
+
+
 let ingreseExpedicion;
 
 
 function llamarExpe() {
   ingreseExpedicion = document.getElementById("nombreExpe").value;
-  let listadoDeExpe = verExpediciones();
-  let expedicionRetornada = listadoDeExpe.find(
-    (expedicion) =>
-      expedicion.nombre.toUpperCase() === ingreseExpedicion.toUpperCase()
-  );
+  let listadoDeExpe = exp;
+  console.log(listadoDeExpe);
+  let expedicionRetornada = listadoDeExpe.find((expedicion) => 
+    expedicion.nombre.toUpperCase() === ingreseExpedicion.toUpperCase()
+  ); 
   console.log(expedicionRetornada);
   (expedicionRetornada) ? toastExpe (`Bienvenido ${expedicionRetornada.nombre }`, "success") : sa("No existe la expedición", "warning")
+ 
   let loading = document.querySelector("#loading");
   loading.innerHTML = loadingFork();
   setTimeout(() => {
@@ -95,10 +104,10 @@ function llamarExpe() {
         }, 4000);
 
   document.querySelector(".index__section__login").style.display = "none";
- 
+
   
 };
-
+ 
 
 
 
@@ -106,9 +115,9 @@ const inputText = document.querySelector("#nombreExpe");
 inputText.addEventListener("keydown", function teclado(tecla) {
   let codigo = tecla.keyCode;
   codigo === 13 ? llamarExpe() : "No existe expedicion";
-});
+})
 const boton = document.querySelector("#btn__login");
-boton.addEventListener("click", llamarExpe);
+boton.addEventListener("click", llamarExpe );
 
 
 const sa = (mensaje,icon ) => {
@@ -130,6 +139,7 @@ swal.fire({
 }
 
 
+
 //TRANSPORTES 
 
 document.querySelector(".index__form__tte").style.display = "none";
@@ -137,7 +147,7 @@ let ingreseTte;
 
 
 function llamarTte() {
-  ingreseTte = document.getElementById("tranporteTte").value;
+  ingreseTte = document.getElementById("transporteTte").value;
   let lista = muestraTransportes();
   let tteResultante = lista.find(
     (transportes) => transportes.numeroTte === ingreseTte
@@ -167,13 +177,13 @@ function llamarTte() {
 const boton2 = document.querySelector("#btn__grabar__tte");
 boton2.addEventListener("click", llamarTte);
 
-const inputTextTte = document.querySelector("#tranporteTte");
+const inputTextTte = document.querySelector("#transporteTte");
 inputTextTte.addEventListener("keydown", function teclado(tecla) {
   const codigo1 = tecla.keyCode;
   codigo1 === 13 ? llamarTte() : "error";
 });
 
-//SECTION CARGA
+// //SECTION CARGA
 
 const sectionCarga = document.querySelector(".card__carga");
 
@@ -216,7 +226,7 @@ const cuantosPallets = document.querySelector("#pallet__entero");
 const palletPicking = document.querySelector("#pallet__picking");
 const palletCortados = document.querySelector("#pallets__cortados");
 const nombreExpedicion = document.querySelector("#nombreExpe");
-const nombreTransporte = document.querySelector("#tranporteTte"); 
+const nombreTransporte = document.querySelector("#transporteTte"); 
 const btnGrabaTodo = document.querySelector("#btn__grabar__all")
 const iniCarga = document.querySelector("#btn__ini");
 const finiCarga = document.querySelector("#btn__fin");
@@ -234,13 +244,15 @@ btnGrabaTodo.addEventListener("click", () => {
     /* Read more about isConfirmed, isDenied below */
     if (result.isConfirmed) {
       Swal.fire('Guardado!', '', 'success')
+      document.querySelector(".card__carga").style.display = "none"
+      document.querySelector(".index__form__tte").style.display = "block";
+      return guardarPallets();
     } else if (result.isDenied) {
       Swal.fire('Los cambios no se guardaron', '', 'info')
+      document.querySelector(".card__carga").style.display = "none"
+      document.querySelector(".index__form__tte").style.display = "block";
     }
-    
-    document.querySelector(".card__carga").style.display = "none";
-    document.querySelector(".index__form__tte").style.display = "block";
-    return guardarPallets();
+       
   });
 });
 
@@ -260,7 +272,7 @@ const cargaDatos ={
   Transporte: nombreTransporte.value,
   Pallets: cantidadesCargas,
   Inicio:horaInicio,
-  Fin:horaFinal,
+  Fin:finCarga(),
 }
 
 infoCargas.push(cargaDatos)
@@ -276,8 +288,13 @@ recuperarDatos();
 
 
 
+//CONSULTAS
 
-
+const consultaTte = ()=> {
+  fetch(`js/transportes.json`)
+    .then((response) => response.json())
+    .then((data) => {console.table(data)})
+}
 
 
 
