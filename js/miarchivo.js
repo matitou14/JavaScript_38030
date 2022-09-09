@@ -82,7 +82,9 @@ inputText.addEventListener("keydown", function teclado(tecla) {
   codigo === 13 ? llamarExpe() : "No existe expedicion";
 })
 const boton = document.querySelector("#btn__login");
-boton.addEventListener("click", llamarExpe );
+boton.addEventListener("click", llamarExpe);
+
+
 
 
 const sa = (mensaje,icon ) => {
@@ -114,6 +116,13 @@ const toastExpecarga = (mensaje, icon, bgcolor) =>{
    color: "white",
   })
   }
+
+  toastTransp = (mensaje, icon) =>{
+    swal.fire({
+      icon: icon,
+      text:mensaje,
+      showConfirmButton: true 
+      })}
 
 
 //TRANSPORTES (formualario para cargar los transportes)
@@ -287,48 +296,25 @@ recuperarDatos();
 
 //CONSULTAS DE TRANSPORTES (nombre, transporte, capacidad)
 let ttes = []
-const consultaTte = ()=> {
+
   fetch(`js/transportes.json`)
     .then((response) => response.json())
     .then((data) => ttes = data)
     .catch((error) => console(error));
-
-}
-
-
-const sectionConsulta = document.querySelector("#card__consulta");
-
-function mostrarConsulta (){
-sectionConsulta.innerHTML = `<main id="index__section__consulta">
-<div id="card__consulta"> 
-<h5 class="titulo__consulta">${Transporte.nombre}</h5>
-<p class="parrafo__consulta2">${Transporte.nroPedido}</p>
-<p class="parrafo__consulta3">${Transporte.chofer}</p>
-<p class="parrafo__consulta4">${Transporte.destino}</p>
-<p class="parrafo__consulta5">${Transporte.capacidad}</p>
-</div>
-<button id="btn__consulta">volver</button>
-</main>`;
-
-}
-
-mostrarConsulta();
-
-document.querySelector("#index__section__consulta").style.display = "none";
+    
   
 let consultaTransporte;
 function consultaTtee(){
 
-  consultaTransporte = document.querySelector("#transporteTte").value;
-  let lista = ttes;
-  let transporteConsultado = lista.find( (transportes) => transportes.nroPedido === consultaTransporte);
-  console.log(transporteConsultado);
-  (transporteConsultado) ? toastExpe ("Realizando consulta", "success") : sa("Ingresa un número de pedido válido", "error");
+consultaTransporte = document.querySelector("#transporteTte").value;
+  console.log(consultaTransporte);
+  const listaTransportes = ttes.find((tte) => tte.nroPedido === consultaTransporte);
+ (listaTransportes) ? toastTransp (`Nombre: ${listaTransportes.nombre} 
+                                   Destino: ${listaTransportes.destino} 
+                                  Capacidad: ${listaTransportes.capacidad} pallets`, "info") : sa("Ingresa un número de pedido válido", "error");
 
-
-  
- 
 }
+
 const boton3 = document.querySelector("#consulta__tte");
 boton3.addEventListener("click", consultaTtee);
 

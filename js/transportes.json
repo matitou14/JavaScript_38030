@@ -2,7 +2,7 @@
     {
         "numeroTte": "1234",
         "nombre": "Logistica Pepe",
-        "nroPedido": 987,
+        "nroPedido": "987",
         "chofer": "Tito Gomez",
         "capacidad": 30,
         "destino": "Cordoba"
