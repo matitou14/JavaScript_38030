@@ -29,6 +29,9 @@ h1 {
   font-family: "Russo One", sans-serif;
   font-size: 1.6em; }
 
+html {
+  scroll-behavior: smooth; }
+
 .index__logo {
   max-width: 15%;
   display: flex;
@@ -127,7 +130,7 @@ h1 {
   grid-template-columns: 1fr;
   position: relative;
   top: 150px;
-  right: -60px;
+  right: 250px;
   gap: 20px;
   width: 150px;
   height: 150px; }
@@ -149,7 +152,7 @@ h1 {
   gap: 20px;
   position: relative;
   top: -100px;
-  left: 600px;
+  left: 300px;
   width: 100px; }
 
 .input__carga {
@@ -171,7 +174,7 @@ h1 {
 .btn__grabar__carga {
   position: relative;
   bottom: 50px;
-  left: 350px; }
+  margin: 0 auto; }
 
 .btn__styles__grabar {
   color: #318acc;

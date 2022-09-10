@@ -59,7 +59,7 @@ function llamarExpe() {
     expedicion.nombre.toUpperCase() === ingreseExpedicion.toUpperCase()
   ); 
   console.log(expedicionRetornada);
-  (expedicionRetornada) ? toastExpe (`Bienvenido ${expedicionRetornada.nombre }`, "success") : sa("No existe la expedición", "warning")
+  (expedicionRetornada) ? toastExpe (`Bienvenido ${expedicionRetornada.nombre }`, "success") : sa("No existe la expedición", "warning")   
  
   let loading = document.querySelector("#loading");
   loading.innerHTML = loadingFork();
@@ -70,9 +70,9 @@ function llamarExpe() {
    
     setTimeout(() => {
    
-      document.querySelector(".index__form__tte").style.display ="block"; 
+      document.querySelector(".index__form__tte").style.display =""; 
         }, 4000);
-
+ 
   document.querySelector(".index__section__login").style.display = "none";
 };
 
@@ -83,6 +83,12 @@ inputText.addEventListener("keydown", function teclado(tecla) {
 })
 const boton = document.querySelector("#btn__login");
 boton.addEventListener("click", llamarExpe);
+const inputTextExpe = document.querySelector("#nombreExpe");
+boton.addEventListener("click", () => {
+if (inputText.value === "") {
+  sa("Ingrese Expedicion", "warning");
+} else {
+  return llamarExpe (); }});
 
 
 
@@ -110,19 +116,20 @@ const toastExpecarga = (mensaje, icon, bgcolor) =>{
    icon: icon,
    text:mensaje,
    showConfirmButton: false,
+   allowEnterKey: true,
    timer: 1000, 
    position: "top-right",
   background: bgcolor,
-   color: "white",
-  })
+   color: "white"})
   }
 
   toastTransp = (mensaje, icon) =>{
     swal.fire({
       icon: icon,
       text:mensaje,
-      showConfirmButton: true 
-      })}
+      showConfirmButton: true, 
+      allowEnterKey: true,})
+     };
 
 
 //TRANSPORTES (formualario para cargar los transportes)
@@ -140,7 +147,7 @@ function llamarTte() {
   console.log(tteResultante);
  (tteResultante) ? toastExpe (`Inciando carga en ${tteResultante.nombre}`, "success") : sa("No existe el transporte", "error");
  
- let loading = document.querySelector("#loading").style.display = "block";
+ let loading = document.querySelector("#loading").style.display = "";
  loading.innerHTML = loadingFork();
  
  setTimeout(() => {
@@ -151,7 +158,7 @@ function llamarTte() {
   
    setTimeout(() => {
   
-    document.querySelector(".card__carga").style.display = "block";; 
+    document.querySelector(".card__carga").style.display = "";
        }, 4000);
 
        document.querySelector(".index__form__tte").style.display = "none";
@@ -251,12 +258,12 @@ btnGrabaTodo.addEventListener("click", () => {
     if (result.isConfirmed) {
       Swal.fire('Guardado!', '', 'success')
       document.querySelector(".card__carga").style.display = "none"
-      document.querySelector(".index__form__tte").style.display = "block";
+      document.querySelector(".index__form__tte").style.display = "";
       return guardarPallets();
     } else if (result.isDenied) {
       Swal.fire('Los cambios no se guardaron', '', 'info')
       document.querySelector(".card__carga").style.display = "none"
-      document.querySelector(".index__form__tte").style.display = "block";
+      document.querySelector(".index__form__tte").style.display = "";
     }
        
   });
@@ -294,7 +301,7 @@ recuperarDatos();
 
 
 
-//CONSULTAS DE TRANSPORTES (nombre, transporte, capacidad)
+//CONSULTAS DE TRANSPORTES POR NUMERO DE PEDIDO (nombre, destino, capacidad)
 let ttes = []
 
   fetch(`js/transportes.json`)

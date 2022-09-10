@@ -7,6 +7,11 @@ h1 {font-weight: bold;
   
 }  
 
+html {
+  scroll-behavior: smooth;
+
+}
+
 .index__logo {
   max-width: 15%;
   display: flex;
@@ -119,7 +124,7 @@ h1 {font-weight: bold;
   grid-template-columns: 1fr;
   position: relative;
   top: 150px;
-  right:-60px;
+  right:250px;
   gap:20px;
   width: 150px;
   height: 150px;
@@ -143,7 +148,7 @@ h1 {font-weight: bold;
   gap: 20px;
   position: relative;
   top: -100px;
-  left: 600px;
+  left: 300px;
   width: 100px;
   }
 .input__carga{
@@ -166,7 +171,7 @@ h1 {font-weight: bold;
 .btn__grabar__carga{
   position:relative;
   bottom: 50px;
-  left: 350px;
+  margin: 0 auto;
 
 }
 .btn__styles__grabar{
