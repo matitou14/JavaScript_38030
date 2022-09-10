@@ -74,7 +74,8 @@ html {
 .loading__fork {
   margin: 0 auto;
   position: absolute;
-  right: 600px; }
+  top: 240px;
+  left: 43%; }
 
 .index__form__tte {
   display: flex;

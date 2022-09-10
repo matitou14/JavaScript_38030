@@ -60,21 +60,8 @@ function llamarExpe() {
   ); 
   console.log(expedicionRetornada);
   (expedicionRetornada) ? toastExpe (`Bienvenido ${expedicionRetornada.nombre }`, "success") : sa("No existe la expedición", "warning")   
- 
-  let loading = document.querySelector("#loading");
-  loading.innerHTML = loadingFork();
-  setTimeout(() => {
-    let loading = document.querySelector("#loading").style.display = "none";
-    
-   }, 4000);
-   
-    setTimeout(() => {
-   
-      document.querySelector(".index__form__tte").style.display =""; 
-        }, 4000);
- 
-  document.querySelector(".index__section__login").style.display = "none";
-};
+}
+  
 
 const inputText = document.querySelector("#nombreExpe");
 inputText.addEventListener("keydown", function teclado(tecla) {
@@ -87,8 +74,26 @@ const inputTextExpe = document.querySelector("#nombreExpe");
 boton.addEventListener("click", () => {
 if (inputText.value === "") {
   sa("Ingrese Expedicion", "warning");
+  document.querySelector(".index__section__login").style.display = ""
 } else {
-  return llamarExpe (); }});
+  let loading = document.querySelector("#loading");
+  loading.innerHTML = loadingFork();
+  setTimeout(() => {
+    let loading = document.querySelector("#loading").style.display = "none";
+    
+   }, 4000);
+   
+    setTimeout(() => {
+   
+      document.querySelector(".index__form__tte").style.display =""; 
+        },4000);
+ 
+  document.querySelector(".index__section__login").style.display = "none";
+};
+  
+  
+  return llamarExpe ()
+});
 
 
 
@@ -97,6 +102,7 @@ const sa = (mensaje,icon ) => {
   swal.fire ({
     title:mensaje,
     icon:icon,
+    timer : 1000,
   })
 
 }
@@ -107,7 +113,8 @@ swal.fire({
  showConfirmButton: false,
  icon: icon,
  text:mensaje,
- timer: 1000, 
+ timer: 2000,
+  
 })
 }
 const toastExpecarga = (mensaje, icon, bgcolor) =>{
@@ -146,37 +153,36 @@ function llamarTte() {
   );
   console.log(tteResultante);
  (tteResultante) ? toastExpe (`Inciando carga en ${tteResultante.nombre}`, "success") : sa("No existe el transporte", "error");
+  }
  
- let loading = document.querySelector("#loading").style.display = "";
- loading.innerHTML = loadingFork();
- 
- setTimeout(() => {
-  let loading = document.querySelector("#loading").style.display = "none";
-  
-  
-}, 4000);
-  
-   setTimeout(() => {
-  
-    document.querySelector(".card__carga").style.display = "";
-       }, 4000);
-
-       document.querySelector(".index__form__tte").style.display = "none";
-
-}
-
 
 const boton2 = document.querySelector("#btn__grabar__tte");
-boton2.addEventListener("click", llamarTte);
+boton2.addEventListener("click",() => {
+  if (inputTextTte.value === "") {
+    sa("Ingrese Transporte", "warning");
+    document.querySelector(".index__form__tte").style.display = ""
+  } else {
+    loading.innerHTML = loadingFork();
+    setTimeout(() => {
+     let loading = document.querySelector("#loading").style.display = "";
+     }, 2000);
+     
+     
+      setTimeout(() => {
+     document.querySelector(".card__carga").style.display = ""
+     document.querySelector("#loading").style.display = "none"}, 4000);
+   
+          document.querySelector(".index__form__tte").style.display = "none";
+   
+    return llamarTte ()
+  }});
+
 
 const inputTextTte = document.querySelector("#transporteTte");
 inputTextTte.addEventListener("keydown", function teclado(tecla) {
   const codigo1 = tecla.keyCode;
   codigo1 === 13 ? llamarTte() : "error";
 });
-
-// const boton4 = document.querySelector("#btn___restablecer")
-// boton4.addEventListener("click", llamarTte); 
 
 //SECTION CARGA (en esta section se guardan los datos de la carga, inicio y fin de carga)
 
@@ -228,9 +234,6 @@ let horaFin = new Date().toLocaleTimeString();
 (horaFin) ? toastExpecarga(`Finalizando carga`, "success", "red") : sa("No existe el transporte", "error");
 return horaFin;
 }
-
-
-
 
 document.querySelector(".card__carga").style.display = "none";
 
@@ -301,7 +304,7 @@ recuperarDatos();
 
 
 
-//CONSULTAS DE TRANSPORTES POR NUMERO DE PEDIDO (nombre, destino, capacidad)
+//CONSULTAS DE TRANSPORTES  (nombre, destino, capacidad)
 let ttes = []
 
   fetch(`js/transportes.json`)
@@ -315,7 +318,7 @@ function consultaTtee(){
 
 consultaTransporte = document.querySelector("#transporteTte").value;
   console.log(consultaTransporte);
-  const listaTransportes = ttes.find((tte) => tte.nroPedido === consultaTransporte);
+  const listaTransportes = ttes.find((tte) => tte.numeroTte === consultaTransporte);
  (listaTransportes) ? toastTransp (`Nombre: ${listaTransportes.nombre} 
                                    Destino: ${listaTransportes.destino} 
                                   Capacidad: ${listaTransportes.capacidad} pallets`, "info") : sa("Ingresa un número de pedido válido", "error");
