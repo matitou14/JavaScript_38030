@@ -1,3 +1,5 @@
+
+
 const titulo = document.querySelector("#titulo");
 titulo.innerText = "Login";
 
@@ -59,23 +61,16 @@ function llamarExpe() {
     expedicion.nombre.toUpperCase() === ingreseExpedicion.toUpperCase()
   ); 
   console.log(expedicionRetornada);
-  (expedicionRetornada) ? toastExpe (`Bienvenido ${expedicionRetornada.nombre }`, "success") : sa("No existe la expedición", "warning")   
+  (expedicionRetornada) ? toastExpe (`Bienvenido ${expedicionRetornada.nombre }`, "success") : sa("Ingrese expedicion correcta", "warning")   
 }
   
 
-const inputText = document.querySelector("#nombreExpe");
-inputText.addEventListener("keydown", function teclado(tecla) {
-  let codigo = tecla.keyCode;
-  codigo === 13 ? llamarExpe() : "No existe expedicion";
-})
 const boton = document.querySelector("#btn__login");
-boton.addEventListener("click", llamarExpe);
-const inputTextExpe = document.querySelector("#nombreExpe");
 boton.addEventListener("click", () => {
-if (inputText.value === "") {
+if (inputText.value === "" && inputText.value !== exp.nombre) {
   sa("Ingrese Expedicion", "warning");
-  document.querySelector(".index__section__login").style.display = ""
-} else {
+  document.querySelector(".index__section__login").style.display = "";
+} else { (inputText.value === exp.nombre)
   let loading = document.querySelector("#loading");
   loading.innerHTML = loadingFork();
   setTimeout(() => {
@@ -89,13 +84,15 @@ if (inputText.value === "") {
         },4000);
  
   document.querySelector(".index__section__login").style.display = "none";
-};
-  
-  
   return llamarExpe ()
-});
+}
+  });
 
-
+const inputText = document.querySelector("#nombreExpe");
+inputText.addEventListener("keydown", function teclado(tecla) {
+  let codigo = tecla.keyCode;
+  codigo === 13 ? llamarExpe() : "No existe expedicion";
+})
 
 
 const sa = (mensaje,icon ) => {
@@ -123,7 +120,6 @@ const toastExpecarga = (mensaje, icon, bgcolor) =>{
    icon: icon,
    text:mensaje,
    showConfirmButton: false,
-   allowEnterKey: true,
    timer: 1000, 
    position: "top-right",
   background: bgcolor,
@@ -152,16 +148,17 @@ function llamarTte() {
     (transportes) => transportes.numeroTte === ingreseTte
   );
   console.log(tteResultante);
- (tteResultante) ? toastExpe (`Inciando carga en ${tteResultante.nombre}`, "success") : sa("No existe el transporte", "error");
-  }
+(tteResultante) ? toastExpe (`Inciando carga en ${tteResultante.nombre}`, "success") : sa("No existe el transporte", "error");
+  
+}
  
-
+const inputTextTte = document.querySelector("#transporteTte");
 const boton2 = document.querySelector("#btn__grabar__tte");
 boton2.addEventListener("click",() => {
-  if (inputTextTte.value === "") {
+  if (inputTextTte.value === "" && inputTextTte.value !== Transporte.numeroTte) {
     sa("Ingrese Transporte", "warning");
     document.querySelector(".index__form__tte").style.display = ""
-  } else {
+  }else { (inputTextTte.value === Transporte.numeroTte)
     loading.innerHTML = loadingFork();
     setTimeout(() => {
      let loading = document.querySelector("#loading").style.display = "";
@@ -171,31 +168,36 @@ boton2.addEventListener("click",() => {
       setTimeout(() => {
      document.querySelector(".card__carga").style.display = ""
      document.querySelector("#loading").style.display = "none"}, 4000);
-   
+ 
           document.querySelector(".index__form__tte").style.display = "none";
-   
-    return llamarTte ()
-  }});
+          return llamarTte ();  
+        }});
+       
 
-
-const inputTextTte = document.querySelector("#transporteTte");
 inputTextTte.addEventListener("keydown", function teclado(tecla) {
   const codigo1 = tecla.keyCode;
   codigo1 === 13 ? llamarTte() : "error";
 });
+
+
 
 //SECTION CARGA (en esta section se guardan los datos de la carga, inicio y fin de carga)
 
 const sectionCarga = document.querySelector(".card__carga");
 
 function mostrarCarga() {
-
 sectionCarga.innerHTML = `<main class="index__section__carga">
+<div> <h2></h2> </div>
+<div class="btn__inicia__todo">
+<button class="btn__sty" id="btn__preset">Transporte en expedición</button>
+
+</div>
+<div class="hidden">
 <div class="btn__cargas">
-<button class="btn__styles" id="btn__preset">Transporte en expedicion</button>
 <button class="btn__styles" id="btn__ini">Iniciar Carga </button>
 <button class="btn__styles" id="btn__fin" >Finalizar Carga</button>
 </div>
+
 <div class="carga__pallets">
 <label class="label__carga">Pallets cargados</label>
 <input id="pallet__entero" class="input__carga" type="text"</input>
@@ -207,17 +209,26 @@ sectionCarga.innerHTML = `<main class="index__section__carga">
 
 <label class="label__carga">Pallets cortados</label>
 <input id="pallets__cortados" class="input__carga" type="text" ></input>
-
 </div>
-
 <div class="btn__grabar__carga">
 <button class="btn__styles__grabar" id="btn__grabar__all" class="btn__grabar" > Grabar</button>
-
+</div>
 </main>`;
 
 
 }
 mostrarCarga();
+
+
+document.querySelector(".hidden").style.display = "none";
+
+function  tteEnSector() {
+  let comienzo = new Date().toLocaleTimeString();
+  document.querySelector(".hidden").style.display = "";
+  document.querySelector(".btn__inicia__todo").style.display = "none";
+  return comienzo;
+}
+document.querySelector("#btn__preset").addEventListener("click", tteEnSector);
 
 // FUNCIONES PARA GESTIONAR INICIO - FIN DE CARGA
 
@@ -246,7 +257,7 @@ const nombreTransporte = document.querySelector("#transporteTte");
 const btnGrabaTodo = document.querySelector("#btn__grabar__all")
 const iniCarga = document.querySelector("#btn__ini");
 const finiCarga = document.querySelector("#btn__fin");
-
+const tteEnSectore = document.querySelector("#btn__preset");
 
 
 btnGrabaTodo.addEventListener("click", () => {
@@ -261,8 +272,8 @@ btnGrabaTodo.addEventListener("click", () => {
     if (result.isConfirmed) {
       Swal.fire('Guardado!', '', 'success')
       document.querySelector(".card__carga").style.display = "none"
-      document.querySelector(".index__form__tte").style.display = "";
-      return guardarPallets();
+      document.querySelector(".index__form__tte").style.display = "none";
+      return guardarPallets(), refrescaPage(); 
     } else if (result.isDenied) {
       Swal.fire('Los cambios no se guardaron', '', 'info')
       document.querySelector(".card__carga").style.display = "none"
@@ -272,6 +283,9 @@ btnGrabaTodo.addEventListener("click", () => {
   });
 });
 
+function refrescaPage() {
+  window.location.reload();
+}
 
 iniCarga.addEventListener("click", inicioCarga);
 finiCarga.addEventListener("click", finCarga);
@@ -287,6 +301,7 @@ const cargaDatos ={
   Expedicion: nombreExpedicion.value,
   Transporte: nombreTransporte.value,
   Pallets: cantidadesCargas,
+  llegadaSector: tteEnSector(),
   Inicio:inicioCarga(),
   Fin:finCarga(),
 }
@@ -321,7 +336,7 @@ consultaTransporte = document.querySelector("#transporteTte").value;
   const listaTransportes = ttes.find((tte) => tte.numeroTte === consultaTransporte);
  (listaTransportes) ? toastTransp (`Nombre: ${listaTransportes.nombre} 
                                    Destino: ${listaTransportes.destino} 
-                                  Capacidad: ${listaTransportes.capacidad} pallets`, "info") : sa("Ingresa un número de pedido válido", "error");
+                                  Capacidad: ${listaTransportes.capacidad} pallets`, "info") : sa("Ingresa un número de transporte válido", "error");
 
 }
 

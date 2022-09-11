@@ -65,9 +65,6 @@ html {
   
 }
 
-
-
-
 .index__form__tte{
   display: flex;
   flex-direction: column;
@@ -75,13 +72,14 @@ html {
   align-items: center;
   top: 150px;
   margin: 20px auto;
-  width: 350px;
-  height: 200px;
+  width: 550px;
+  height: 400px;
   box-shadow: 0 6px 30px rgba(0, 0, 0, 0.1);
   font-family: $font-subtitle;
   background-color: rgba(235, 228, 228, 0.75);
   border-radius: 12px;
-  border: 1px solid gray
+  border: 1px solid gray;
+  gap: 20px;
 }
 
 .index__label__input {
@@ -121,6 +119,29 @@ html {
   border-radius: 12px;
   border: 1px solid gray
 }
+
+.btn__inicia__todo{
+  margin: 0 auto;
+  position: relative;
+  top: -200px;
+  display: flex;
+  gap:15px;
+  width: 150px;
+ .btn__sty{
+  color: #318acc;
+  background-color:rgba(0, 0, 0, 0);
+  font-family: $font-subtitle;
+  font-weight: bold;
+  border: 2px solid;
+  transition: all 1s ease;
+
+&:hover{
+  background: #2bda48;
+  color:#fff !important; 
+}
+}
+ } 
+
 .btn__cargas{
   display: grid;
   grid-template-columns: 1fr;
