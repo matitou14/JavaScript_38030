@@ -211,11 +211,6 @@ const boton3 = document.querySelector("#consulta__tte");
 boton3.addEventListener("click", consultaTtee);
 
 
-// let pegaDatos = document.createElement("div");
-// pegaDatos.innerHTML = `<h2>${consultaTtee()}</h2>`;
-// document.sectionCarga.append (pegaDatos);
-
-
 
 //SECTION CARGA (en esta section se guardan los datos de la carga, inicio y fin de carga)
 
@@ -261,7 +256,7 @@ mostrarCarga();
 document.querySelector(".hidden").style.display = "none";
 
 
-//BOTONES QUE EJECUTAN LOS EVENTOS DE LA SECTION CARGA (INICIO, FIN, GRABAR)
+//BOTONES QUE EJECUTAN LOS EVENTOS DE LA SECTION CARGA (LLEGADA, INICIO y FIN DE CARGAS)
 
 document.querySelector("#btn__preset").addEventListener("click",() =>{
   comienzo = new Date().toLocaleTimeString();
@@ -289,7 +284,7 @@ horaFin = new Date().toLocaleTimeString();
 return horaFin});
 
 
-document.querySelector(".card__carga").style.display = "";
+document.querySelector(".card__carga").style.display = "none";
 
 
 const cuantosPallets = document.querySelector("#pallet__entero");
