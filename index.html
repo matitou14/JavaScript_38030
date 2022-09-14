@@ -25,10 +25,15 @@
     <section class="index__section__login">
         <h1 id="titulo">Login</h1>
         <div class="index__login" id="logins">
-          <input id="nombreExpe" type="text"  class="index-form-control" id="floatingInput"
+          <input id="nombreExpe" list="expediciones" type="text"  class="index-form-control" id="floatingInput"
                 placeholder="Ingrese expedición">
             <label for="floatingInput"></label>
-            
+            <datalist id="expediciones">
+                <option>Dulceria</option>
+                <option>UAT</option>
+                <option>PF</option>
+                <option>Queseria</option>
+            </datalist>
         </div>
         <div class="index__btn__login">
             <button id="btn__login" type="button"  class="btn btn-primary">Ejecutar</button>
@@ -42,12 +47,18 @@
         
         <h1 id="titulo">Ingresa numero de transporte</h1>
         <div class="form-floating mb-3">
-            <input id="transporteTte"  type="text" size="2" class="form-control" id="floatingInput" placeholder="Ingresa expedición">
-            <label for="floatingInput">Transporte número </label>
+            <input id="transporteTte" list="transportes" type="text" size="2" class="form-control" id="floatingInput" placeholder="Ingresa expedición">
+            <label for="floatingInput">Ingresa el número de transporte </label>
             <button id="btn__grabar__tte" type="button" class="btn btn-primary">Ejecutar</button>
             <button id="btn__restablecer" type="reset" class="btn btn-secondary" value="">Restablecer</button>
             <button id="consulta__tte" type="button" class="btn btn-info">Consulta</button>
             <h5 id="tituloCarga"></h5>
+            <datalist id="transportes">
+                <option>1234</option>
+                <option>12345</option>
+                <option>123456</option>
+                <option>1234567</option>
+            </datalist>
             </div>
         </div>
     </section>
@@ -56,12 +67,10 @@
    </section>
    
    <section id= "card__consulta">
-
-    
-
    </section>
-  
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
         crossorigin="anonymous"></script>
         <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>

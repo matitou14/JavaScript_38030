@@ -67,11 +67,15 @@ function llamarExpe() {
 
 const boton = document.querySelector("#btn__login");
 boton.addEventListener("click", () => {
-if (inputText.value === "" && inputText.value !== exp.nombre) {
-  sa("Ingrese Expedicion", "warning");
+const inputExpe = document.getElementById("nombreExpe").value; 
+const loginExpe = exp.find(expedicion => expedicion.nombre === inputExpe)
+console.log(loginExpe)
+ if (loginExpe === "" || loginExpe  === expediciones.nombre) {
+   sa("Ingrese los datos correctamente", "error"); 
   document.querySelector(".index__section__login").style.display = "";
-} else { (inputText.value === exp.nombre)
-  let loading = document.querySelector("#loading");
+  
+}else{
+ let loading = document.querySelector("#loading");
   loading.innerHTML = loadingFork();
   setTimeout(() => {
     let loading = document.querySelector("#loading").style.display = "none";
@@ -85,8 +89,7 @@ if (inputText.value === "" && inputText.value !== exp.nombre) {
  
   document.querySelector(".index__section__login").style.display = "none";
   return llamarExpe ()
-}
-  });
+}});
 
 const inputText = document.querySelector("#nombreExpe");
 inputText.addEventListener("keydown", function teclado(tecla) {
@@ -155,10 +158,13 @@ function llamarTte() {
 const inputTextTte = document.querySelector("#transporteTte");
 const boton2 = document.querySelector("#btn__grabar__tte");
 boton2.addEventListener("click",() => {
-  if (inputTextTte.value === "" && inputTextTte.value !== Transporte.numeroTte) {
-    sa("Ingrese Transporte", "warning");
+  const inputTte = document.getElementById("transporteTte").value;
+  const loginTte = muestraTransportes().find(transportes => transportes.numeroTte === inputTte) 
+ 
+  if (loginTte === "" ||  loginTte === Transporte.numeroTte) {
+    sa("Ingrese los datos correctamente", "warning");
     document.querySelector(".index__form__tte").style.display = ""
-  }else { (inputTextTte.value === Transporte.numeroTte)
+  }else { 
     loading.innerHTML = loadingFork();
     setTimeout(() => {
      let loading = document.querySelector("#loading").style.display = "";
@@ -170,7 +176,8 @@ boton2.addEventListener("click",() => {
      document.querySelector("#loading").style.display = "none"}, 4000);
  
           document.querySelector(".index__form__tte").style.display = "none";
-          return llamarTte ();  
+          
+          return llamarTte (); 
         }});
        
 
@@ -218,10 +225,7 @@ sectionCarga.innerHTML = `<main class="index__section__carga">
 
 }
 mostrarCarga();
-
-
 document.querySelector(".hidden").style.display = "none";
-
 function  tteEnSector() {
   let comienzo = new Date().toLocaleTimeString();
   document.querySelector(".hidden").style.display = "";
@@ -229,6 +233,8 @@ function  tteEnSector() {
   return comienzo;
 }
 document.querySelector("#btn__preset").addEventListener("click", tteEnSector);
+
+
 
 // FUNCIONES PARA GESTIONAR INICIO - FIN DE CARGA
 
@@ -343,4 +349,19 @@ consultaTransporte = document.querySelector("#transporteTte").value;
 const boton3 = document.querySelector("#consulta__tte");
 boton3.addEventListener("click", consultaTtee);
 
+let muestraDatos;
+function muestraLosTranspor(){
 
+muestraDatos = document.querySelector("#transporteTte").value;
+  console.log(muestraDatos);
+  const listaTransportes = ttes.find((tte) => tte.numeroTte === muestraDatos);
+ (listaTransportes) ? toastTransp (`Nombre: ${listaTransportes.nombre} 
+                                   Destino: ${listaTransportes.destino} 
+                                  Capacidad: ${listaTransportes.capacidad} pallets`, "info") : sa("Ingresa un número de transporte válido", "error");
+                                  muestraLosTranspor();
+
+;}
+//  const mostrarTtes = document.querySelector(".card__carga");
+//  const transporlist = document.createElement ("div");
+//  transporlist.innerHTML =`<h2>${tteResultante.nombre}</h2>`;
+//  mostrarTtes.append(muestraLosTranspor());
