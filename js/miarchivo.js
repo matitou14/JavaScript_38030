@@ -186,6 +186,35 @@ inputTextTte.addEventListener("keydown", function teclado(tecla) {
   codigo1 === 13 ? llamarTte() : "error";
 });
 
+//CONSULTAS DE TRANSPORTES  (nombre, destino, capacidad)
+let ttes = []
+
+  fetch(`js/transportes.json`)
+    .then((response) => response.json())
+    .then((data) => ttes = data)
+    .catch((error) => console(error));
+    
+  
+let consultaTransporte;
+function consultaTtee(){
+
+consultaTransporte = document.querySelector("#transporteTte").value;
+  console.log(consultaTransporte);
+  const listaTransportes = ttes.find(tte => tte.numeroTte === consultaTransporte);
+ (listaTransportes) ? toastTransp (`Nombre: ${listaTransportes.nombre} 
+                                   Destino: ${listaTransportes.destino} 
+                                  Capacidad: ${listaTransportes.capacidad} pallets`, "info") : sa("Ingresa un número de transporte válido", "error");
+
+}
+
+const boton3 = document.querySelector("#consulta__tte");
+boton3.addEventListener("click", consultaTtee);
+
+
+// let pegaDatos = document.createElement("div");
+// pegaDatos.innerHTML = `<h2>${consultaTtee()}</h2>`;
+// document.sectionCarga.append (pegaDatos);
+
 
 
 //SECTION CARGA (en esta section se guardan los datos de la carga, inicio y fin de carga)
@@ -193,8 +222,12 @@ inputTextTte.addEventListener("keydown", function teclado(tecla) {
 const sectionCarga = document.querySelector(".card__carga");
 
 function mostrarCarga() {
-sectionCarga.innerHTML = `<main class="index__section__carga">
-<div> <h2></h2> </div>
+sectionCarga.innerHTML = `<main id="main__carga" class="index__section__carga">
+<h1 class="carga__titulo">Datos de carga</h1>
+
+<div> 
+<h2></h2> 
+</div>
 <div class="btn__inicia__todo">
 <button class="btn__sty" id="btn__preset">Transporte en expedición</button>
 
@@ -226,33 +259,37 @@ sectionCarga.innerHTML = `<main class="index__section__carga">
 }
 mostrarCarga();
 document.querySelector(".hidden").style.display = "none";
-function  tteEnSector() {
-  let comienzo = new Date().toLocaleTimeString();
+
+
+//BOTONES QUE EJECUTAN LOS EVENTOS DE LA SECTION CARGA (INICIO, FIN, GRABAR)
+
+document.querySelector("#btn__preset").addEventListener("click",() =>{
+  comienzo = new Date().toLocaleTimeString();
   document.querySelector(".hidden").style.display = "";
   document.querySelector(".btn__inicia__todo").style.display = "none";
   return comienzo;
-}
-document.querySelector("#btn__preset").addEventListener("click", tteEnSector);
+});
 
 
 
-// FUNCIONES PARA GESTIONAR INICIO - FIN DE CARGA
 
-function inicioCarga() {
-  let horaIni = new Date().toLocaleTimeString();
+const iniCarga = document.querySelector("#btn__ini");
+
+iniCarga.addEventListener("click", () =>{
+  horaIni = new Date().toLocaleTimeString();
   (horaIni) ? toastExpecarga (`Iniciando carga`, "success", "red") : sa("No existe el transporte", "error");
   return horaIni;
-}
+});
+  
 
-
-
-function finCarga() {
-let horaFin = new Date().toLocaleTimeString();
+const finiCarga = document.querySelector("#btn__fin");
+finiCarga.addEventListener("click",() =>{
+horaFin = new Date().toLocaleTimeString();
 (horaFin) ? toastExpecarga(`Finalizando carga`, "success", "red") : sa("No existe el transporte", "error");
-return horaFin;
-}
+return horaFin});
 
-document.querySelector(".card__carga").style.display = "none";
+
+document.querySelector(".card__carga").style.display = "";
 
 
 const cuantosPallets = document.querySelector("#pallet__entero");
@@ -261,8 +298,8 @@ const palletCortados = document.querySelector("#pallets__cortados");
 const nombreExpedicion = document.querySelector("#nombreExpe");
 const nombreTransporte = document.querySelector("#transporteTte"); 
 const btnGrabaTodo = document.querySelector("#btn__grabar__all")
-const iniCarga = document.querySelector("#btn__ini");
-const finiCarga = document.querySelector("#btn__fin");
+
+
 const tteEnSectore = document.querySelector("#btn__preset");
 
 
@@ -293,8 +330,7 @@ function refrescaPage() {
   window.location.reload();
 }
 
-iniCarga.addEventListener("click", inicioCarga);
-finiCarga.addEventListener("click", finCarga);
+
 const infoCargas = [];
 function guardarPallets (){
 const cantidadesCargas = {
@@ -307,9 +343,9 @@ const cargaDatos ={
   Expedicion: nombreExpedicion.value,
   Transporte: nombreTransporte.value,
   Pallets: cantidadesCargas,
-  llegadaSector: tteEnSector(),
-  Inicio:inicioCarga(),
-  Fin:finCarga(),
+  llegadaSector: comienzo,
+  Inicio:horaIni,
+  Fin: horaFin,
 }
 
 infoCargas.push(cargaDatos)
@@ -325,43 +361,3 @@ recuperarDatos();
 
 
 
-//CONSULTAS DE TRANSPORTES  (nombre, destino, capacidad)
-let ttes = []
-
-  fetch(`js/transportes.json`)
-    .then((response) => response.json())
-    .then((data) => ttes = data)
-    .catch((error) => console(error));
-    
-  
-let consultaTransporte;
-function consultaTtee(){
-
-consultaTransporte = document.querySelector("#transporteTte").value;
-  console.log(consultaTransporte);
-  const listaTransportes = ttes.find((tte) => tte.numeroTte === consultaTransporte);
- (listaTransportes) ? toastTransp (`Nombre: ${listaTransportes.nombre} 
-                                   Destino: ${listaTransportes.destino} 
-                                  Capacidad: ${listaTransportes.capacidad} pallets`, "info") : sa("Ingresa un número de transporte válido", "error");
-
-}
-
-const boton3 = document.querySelector("#consulta__tte");
-boton3.addEventListener("click", consultaTtee);
-
-let muestraDatos;
-function muestraLosTranspor(){
-
-muestraDatos = document.querySelector("#transporteTte").value;
-  console.log(muestraDatos);
-  const listaTransportes = ttes.find((tte) => tte.numeroTte === muestraDatos);
- (listaTransportes) ? toastTransp (`Nombre: ${listaTransportes.nombre} 
-                                   Destino: ${listaTransportes.destino} 
-                                  Capacidad: ${listaTransportes.capacidad} pallets`, "info") : sa("Ingresa un número de transporte válido", "error");
-                                  muestraLosTranspor();
-
-;}
-//  const mostrarTtes = document.querySelector(".card__carga");
-//  const transporlist = document.createElement ("div");
-//  transporlist.innerHTML =`<h2>${tteResultante.nombre}</h2>`;
-//  mostrarTtes.append(muestraLosTranspor());
