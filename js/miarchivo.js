@@ -93,7 +93,7 @@ console.log(loginExpe)
 
 const inputText = document.querySelector("#nombreExpe");
 inputText.addEventListener("keydown", function teclado(tecla) {
-  let codigo = tecla.keyCode;
+ let codigo = tecla.keyCode;
   codigo === 13 ? llamarExpe() : "No existe expedicion";
 })
 
@@ -137,7 +137,12 @@ const toastExpecarga = (mensaje, icon, bgcolor) =>{
       allowEnterKey: true,})
      };
 
-
+     toastTransp1 = (mensaje, icon) =>{
+      swal.fire({
+        text:mensaje,
+        showConfirmButton: true, 
+        allowEnterKey: true,})
+       };
 //TRANSPORTES (formualario para cargar los transportes)
 
 document.querySelector(".index__form__tte").style.display = "none";
@@ -183,7 +188,8 @@ boton2.addEventListener("click",() => {
 
 inputTextTte.addEventListener("keydown", function teclado(tecla) {
   const codigo1 = tecla.keyCode;
-  codigo1 === 13 ? llamarTte() : "error";
+  codigo1 === 13 ? llamarTte() : "No existe transporte";
+  
 });
 
 //CONSULTAS DE TRANSPORTES  (nombre, destino, capacidad)
@@ -201,33 +207,41 @@ function consultaTtee(){
 consultaTransporte = document.querySelector("#transporteTte").value;
   console.log(consultaTransporte);
   const listaTransportes = ttes.find(tte => tte.numeroTte === consultaTransporte);
- (listaTransportes) ? toastTransp (`Nombre: ${listaTransportes.nombre} 
+ toastTransp (`Nombre: ${listaTransportes.nombre} 
                                    Destino: ${listaTransportes.destino} 
-                                  Capacidad: ${listaTransportes.capacidad} pallets`, "info") : sa("Ingresa un número de transporte válido", "error");
-
-}
+                                  Capacidad: ${listaTransportes.capacidad} pallets`, "info")}
 
 const boton3 = document.querySelector("#consulta__tte");
 boton3.addEventListener("click", consultaTtee);
+
+let consultaTransporte2;
+function cardCargaTte(){
+
+consultaTransporte2 = document.querySelector("#transporteTte").value;
+  console.log(consultaTransporte2);
+  const listaTransportes = ttes.find(tte => tte.numeroTte === consultaTransporte2);
+ toastTransp1 (`                  Vas a cargar en el transporte ${listaTransportes.nombre} 
+                                  Destino:  
+                                  Capacidad: ${listaTransportes.capacidad} pallets`, "info") ;}
+boton2.addEventListener("click", cardCargaTte);          
 
 
 
 //SECTION CARGA (en esta section se guardan los datos de la carga, inicio y fin de carga)
 
 const sectionCarga = document.querySelector(".card__carga");
-
 function mostrarCarga() {
 sectionCarga.innerHTML = `<main id="main__carga" class="index__section__carga">
-<h1 class="carga__titulo">Datos de carga</h1>
 
-<div> 
-<h2></h2> 
-</div>
+<card id="cardTtes" class="inner__tte">
+
+</card>
 <div class="btn__inicia__todo">
 <button class="btn__sty" id="btn__preset">Transporte en expedición</button>
 
 </div>
 <div class="hidden">
+<h1 class="carga__titulo">Datos de carga</h1>
 <div class="btn__cargas">
 <button class="btn__styles" id="btn__ini">Iniciar Carga </button>
 <button class="btn__styles" id="btn__fin" >Finalizar Carga</button>
@@ -255,7 +269,14 @@ sectionCarga.innerHTML = `<main id="main__carga" class="index__section__carga">
 mostrarCarga();
 document.querySelector(".hidden").style.display = "none";
 
-
+const tit = document.querySelector("#cardTitulo");
+const nombre = document.querySelector("#cardNombre");
+const capacidad = document.querySelector("#cardTte");
+function mostrarDatosTte() {
+  titulo.innerHTML = `<h3>${consultaTtee()}</h3>`;
+  nombre.innerText = `<h3>${ttes.destino}</h3>`;
+  capacidad.innerHTML =`<h4> ${ttes.capacidad} </h4>`;  
+}
 //BOTONES QUE EJECUTAN LOS EVENTOS DE LA SECTION CARGA (LLEGADA, INICIO y FIN DE CARGAS)
 
 document.querySelector("#btn__preset").addEventListener("click",() =>{
@@ -272,7 +293,7 @@ const iniCarga = document.querySelector("#btn__ini");
 
 iniCarga.addEventListener("click", () =>{
   horaIni = new Date().toLocaleTimeString();
-  (horaIni) ? toastExpecarga (`Iniciando carga`, "success", "red") : sa("No existe el transporte", "error");
+  toastExpecarga (`Iniciando carga`, "success", "red");
   return horaIni;
 });
   
@@ -280,7 +301,7 @@ iniCarga.addEventListener("click", () =>{
 const finiCarga = document.querySelector("#btn__fin");
 finiCarga.addEventListener("click",() =>{
 horaFin = new Date().toLocaleTimeString();
-(horaFin) ? toastExpecarga(`Finalizando carga`, "success", "red") : sa("No existe el transporte", "error");
+toastExpecarga(`Finalizando carga`, "success", "red");
 return horaFin});
 
 
