@@ -148,7 +148,6 @@ const toastExpecarga = (mensaje, icon, bgcolor) =>{
 document.querySelector(".index__form__tte").style.display = "none";
 let ingreseTte;
 
-
 function llamarTte() {
   ingreseTte = document.getElementById("transporteTte").value;
   let lista = muestraTransportes();
@@ -156,15 +155,16 @@ function llamarTte() {
     (transportes) => transportes.numeroTte === ingreseTte
   );
   console.log(tteResultante);
-(tteResultante) ? toastExpe (`Inciando carga en ${tteResultante.nombre}`, "success") : sa("No existe el transporte", "error");
-  
-}
+(tteResultante) ? toastExpe (`Inciando carga en ${tteResultante.nombre}
+                                             Destino: ${tteResultante.destino}
+                                             Capacidad:${tteResultante.capacidad}`  , "success") : sa("No existe el transporte", "error");
  
+  }                    
 const inputTextTte = document.querySelector("#transporteTte");
 const boton2 = document.querySelector("#btn__grabar__tte");
 boton2.addEventListener("click",() => {
   const inputTte = document.getElementById("transporteTte").value;
-  const loginTte = muestraTransportes().find(transportes => transportes.numeroTte === inputTte) 
+  const loginTte = muestraTransportes().find(transportes => transportes.numeroTte === inputTte); 
  
   if (loginTte === "" ||  loginTte === Transporte.numeroTte) {
     sa("Ingrese los datos correctamente", "warning");
@@ -178,14 +178,14 @@ boton2.addEventListener("click",() => {
      
       setTimeout(() => {
      document.querySelector(".card__carga").style.display = ""
-     document.querySelector("#loading").style.display = "none"}, 4000);
+     document.querySelector("#loading").style.display = "none"}, 6000);
  
           document.querySelector(".index__form__tte").style.display = "none";
           
+                               
           return llamarTte (); 
         }});
-       
-
+      
 inputTextTte.addEventListener("keydown", function teclado(tecla) {
   const codigo1 = tecla.keyCode;
   codigo1 === 13 ? llamarTte() : "No existe transporte";
@@ -197,7 +197,7 @@ let ttes = []
 
   fetch(`js/transportes.json`)
     .then((response) => response.json())
-    .then((data) => ttes = data)
+    .then((data) => ttes = data) 
     .catch((error) => console(error));
     
   
@@ -207,24 +207,13 @@ function consultaTtee(){
 consultaTransporte = document.querySelector("#transporteTte").value;
   console.log(consultaTransporte);
   const listaTransportes = ttes.find(tte => tte.numeroTte === consultaTransporte);
- toastTransp (`Nombre: ${listaTransportes.nombre} 
-                                   Destino: ${listaTransportes.destino} 
+ toastTransp                    (`Nombre: ${listaTransportes.nombre} 
+                                  Destino: ${listaTransportes.destino} 
                                   Capacidad: ${listaTransportes.capacidad} pallets`, "info")}
+
 
 const boton3 = document.querySelector("#consulta__tte");
 boton3.addEventListener("click", consultaTtee);
-
-let consultaTransporte2;
-function cardCargaTte(){
-
-consultaTransporte2 = document.querySelector("#transporteTte").value;
-  console.log(consultaTransporte2);
-  const listaTransportes = ttes.find(tte => tte.numeroTte === consultaTransporte2);
- toastTransp1 (`                  Vas a cargar en el transporte ${listaTransportes.nombre} 
-                                  Destino:  
-                                  Capacidad: ${listaTransportes.capacidad} pallets`, "info") ;}
-boton2.addEventListener("click", cardCargaTte);          
-
 
 
 //SECTION CARGA (en esta section se guardan los datos de la carga, inicio y fin de carga)
@@ -269,14 +258,6 @@ sectionCarga.innerHTML = `<main id="main__carga" class="index__section__carga">
 mostrarCarga();
 document.querySelector(".hidden").style.display = "none";
 
-const tit = document.querySelector("#cardTitulo");
-const nombre = document.querySelector("#cardNombre");
-const capacidad = document.querySelector("#cardTte");
-function mostrarDatosTte() {
-  titulo.innerHTML = `<h3>${consultaTtee()}</h3>`;
-  nombre.innerText = `<h3>${ttes.destino}</h3>`;
-  capacidad.innerHTML =`<h4> ${ttes.capacidad} </h4>`;  
-}
 //BOTONES QUE EJECUTAN LOS EVENTOS DE LA SECTION CARGA (LLEGADA, INICIO y FIN DE CARGAS)
 
 document.querySelector("#btn__preset").addEventListener("click",() =>{
@@ -285,8 +266,6 @@ document.querySelector("#btn__preset").addEventListener("click",() =>{
   document.querySelector(".btn__inicia__todo").style.display = "none";
   return comienzo;
 });
-
-
 
 
 const iniCarga = document.querySelector("#btn__ini");
