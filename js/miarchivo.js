@@ -39,7 +39,7 @@ const loadingFork = () => {
 
 
 
-//EXPEDICIONES
+// LOGIN PARA IDENTIFICAR EL SECTOR DE CARGA
 
 let exp = []
     fetch(`js/expediciones.json`)
@@ -97,7 +97,7 @@ inputText.addEventListener("keydown", function teclado(tecla) {
   codigo === 13 ? llamarExpe() : "No existe expedicion";
 })
 
-
+// USO DE LIBRERIA SWEETALERT2 PARA MOSTRAR MENSAJES
 const sa = (mensaje,icon ) => {
   swal.fire ({
     title:mensaje,
@@ -143,7 +143,8 @@ const toastExpecarga = (mensaje, icon, bgcolor) =>{
         showConfirmButton: true, 
         allowEnterKey: true,})
        };
-//TRANSPORTES (formualario para cargar los transportes)
+
+// BUSQUEDA DE TRANSPORTE POR NUMERO
 
 document.querySelector(".index__form__tte").style.display = "none";
 let ingreseTte;
